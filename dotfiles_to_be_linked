@@ -1,0 +1,10 @@
+~/.bash_logout
+~/.bash_profile
+~/.bashrc
+~/.vimrc
+~/.xinitrc
+~/.Xresources
+~/.config/polybar/config
+~/.config/compton.conf
+~/.config/i3/config
+    
