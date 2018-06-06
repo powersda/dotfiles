@@ -17,17 +17,17 @@ for line in $(cat "$1"); do
     expandedDirectory="${line/\~/$HOME}"
     dotfileDirectory="$2"
 
-    if [ ! -e $expandedDirectory ]; then
+    if [ ! -e "$expandedDirectory" ]; then
         echo "\""$line"\" does not exist!"
-    elif [ -f $expandedDirectory ] && [ ! -e $dotfileDirectory/$fileName ]; then 
-        echo "$dotfileDirectory/$fileName already exists!"
+    elif [ -f "$expandedDirectory" ] && [ -e "$dotfileDirectory"/"$fileName" ]; then 
+        echo ""$dotfileDirectory"/"$fileName" already exists!"
     else
-        if [ -f $expandedDirectory ] && [ ! -h $expandedDirectory ]; then
+        if [ -f "$expandedDirectory" ] && [ ! -h "$expandedDirectory" ]; then
             if [[ "$fileName" == */* ]] && [ ! -d "${fileName%*/}" ]; then
-                mkdir -p $dotfileDirectory/"${fileName%*/}"
+                mkdir -p "$dotfileDirectory"/"${fileName%*/}"
             fi
-            mv $expandedDirectory $dotfileDirectory/$fileName && echo "Moved \"$fileName\" to $dotfileDirectory"
+            mv "$expandedDirectory" "$dotfileDirectory"/"$fileName" && echo "Moved \"$fileName\" to "$dotfileDirectory""
         fi
-        ln -sf $PWD/$dotfileDirectory/$fileName $expandedDirectory && echo "Created/updated symlink at $expandedDirectory"
+        ln -sf "$PWD"/"$dotfileDirectory"/"$fileName" "$expandedDirectory" && echo "Created/updated symlink at "$expandedDirectory""
     fi
 done
