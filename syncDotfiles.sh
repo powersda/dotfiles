@@ -16,18 +16,21 @@ for line in $(cat "$1"); do
     fileName="${line#*/}"
     expandedDirectory="${line/\~/$HOME}"
     dotfileDirectory="$2"
-
+    
     if [ ! -e "$expandedDirectory" ]; then
         echo "\""$line"\" does not exist!"
-    elif [ -f "$expandedDirectory" ] && [ -e "$dotfileDirectory"/"$fileName" ]; then 
-        echo ""$dotfileDirectory"/"$fileName" already exists!"
     else
         if [ -f "$expandedDirectory" ] && [ ! -h "$expandedDirectory" ]; then
-            if [[ "$fileName" == */* ]] && [ ! -d "${fileName%*/}" ]; then
-                mkdir -p "$dotfileDirectory"/"${fileName%*/}"
+            if [[ "$fileName" == */* ]] && [ ! -d "${fileName%/*}" ]; then
+                mkdir -p "$dotfileDirectory"/"${fileName%/*}"
             fi
             mv "$expandedDirectory" "$dotfileDirectory"/"$fileName" && echo "Moved \"$fileName\" to "$dotfileDirectory""
         fi
-        ln -sf "$PWD"/"$dotfileDirectory"/"$fileName" "$expandedDirectory" && echo "Created/updated symlink at "$expandedDirectory""
+
+        if [ -f "$dotfileDirectory"/"$fileName" ]; then
+            ln -sf "$PWD"/"$dotfileDirectory"/"$fileName" "$expandedDirectory" && echo "Created/updated symlink at "$expandedDirectory""
+        else
+            echo "Failed to retrieve "$expandedDirectory". No symlink created!."
+        fi
     fi
 done
