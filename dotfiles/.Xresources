@@ -2,7 +2,7 @@
 #define _background #282828
 #define _foreground #ebdbb2
 #define _transparent #00000000
-#define _semitransparent #E6000000
+#define _semitransparent #D0282828
 ! Black + DarkGrey
 #define _color0 #222222
 #define _color8 #928374
@@ -28,37 +28,39 @@
 #define _color7  #ebdbb2
 #define _color15 #dfdfdf
 
-*background: _background
-*foreground: _foreground
-*color0:  _color0 
-*color8:  _color8
-*color1:  _color1
-*color9:  _color9
-*color2:  _color2
-*color10: _color10
-*color3:  _color3
-*color11: _color11
-*color4:  _color4
-*color12: _color12
-*color5:  _color5
-*color13: _color13
-*color6:  _color6
-*color14: _color14
-*color7:  _color7
-*color15: _color15
+*.background: _background
+*.foreground: _foreground
+*.color0:  _color0 
+*.color8:  _color8
+*.color1:  _color1
+*.color9:  _color9
+*.color2:  _color2
+*.color10: _color10
+*.color3:  _color3
+*.color11: _color11
+*.color4:  _color4
+*.color12: _color12
+*.color5:  _color5
+*.color13: _color13
+*.color6:  _color6
+*.color14: _color14
+*.color7:  _color7
+*.color15: _color15
+*.semitransparent: _semitransparent
+*.transparent: _transparent
 
 !URxvt Settings ----------------------------------------------------------
 URxvt.font:			xft:inconsolata:pixelsize=14,xft:FontAwesome:pixelsize=14,xft:unifont:pixelsize=14
 URxvt.boldFont:			xft:inconsolata:Bold:pixelsize=14,FontAwesome:pixelsize=14,xft:unifont:pixelsize=14
 URxvt.scrollBar:		false
 URxvt.depth:			32
-URxvt.background:		rgba:0000/0000/0000/E667	
+!URxvt.background:		rgba:0000/0000/0000/D367	
 URxvt.cursorBlink:		true
 URxvt.scrollTtyKeypress:	true
 URxvt.scrollTtyOutput:		false
 URxvt.url-launcher:		/usr/bin/firefox
 URxvt.visualBell:		true
-URxvt.letterSpace:	        0			
+URxvt.letterSpace:	        0
 
 !Font Settings-------------------------------------------------------------
 Xft.dpi:			96

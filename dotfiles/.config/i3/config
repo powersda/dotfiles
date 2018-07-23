@@ -3,16 +3,17 @@
 set $primaryFont Ubuntu 11
 font pango:$primaryFont
 
-set_from_resource $brightwhite color15 #bf616aFF
-set_from_resource $white       color7 #c0c5ceFF
-set_from_resource $grey        color8 #c0c5ceFF
-set_from_resource $dark        color0 #c0c5ceFF
-set_from_resource $alert       color2 #2b303bCC
+set_from_resource $transparent i3wm.transparent
+set_from_resource $brightwhite i3wm.color15 
+set_from_resource $white       i3wm.color7 
+set_from_resource $grey        i3wm.color8 
+set_from_resource $dark        i3wm.color0 
+set_from_resource $alert       i3wm.color2 
 
 # window colors         Border       Background Text         Indicator    Child_Border
 client.focused          $brightwhite $dark      $brightwhite $brightwhite $brightwhite
-client.unfocused        $dark        $dark      $brightwhite $dark        $dark
-client.urgent           $alert       $dark      $brightwhite $dark        $dark
+client.unfocused        $grey        $dark      $brightwhite $grey        $grey
+client.urgent           $alert       $dark      $brightwhite $alert       $alert
 client.placeholder      $dark        $dark      $dark        $dark        $dark
 client.background 	$dark
 
@@ -24,36 +25,50 @@ gaps inner 10
 gaps outer 0
 
 # Workspace Management-----------------------------------------------------
-set $workspace1 1: 
-set $workspace2 2: 
-set $workspace3 3: 
-set $workspace4 4: 
-set $workspace5 5: 
-set $workspace6 6: 
-set $workspace7 7: 
-set $workspace8 8: 
-set $workspace9 9: 
-set $workspace10 10: 
+
+set $workspace1 1
+set $workspace2 2
+set $workspace3 3
+set $workspace4 4
+set $workspace5 5
+set $workspace6 6
+set $workspace7 7
+set $workspace8 8
+set $workspace9 9
+set $workspace10 10
+
 
 force_display_urgency_hint 0 ms
 
 # Workspace Assignment
 
-assign [class="^URxvt$"] $workspace1
-assign [class="^Firefox$"] $workspace2
-assign [class="^Spotify$"] $workspace3
-assign [class="^discord$"] $workspace5
-assign [class="^Thunderbird$"] $workspace4
-assign [class="^VBoxSDL"] $workspace10
-assign [class="^.*"] $workspace6
+workspace $workspace1 output LVDS-1
+workspace $workspace2 output LVDS-1
+workspace $workspace3 output LVDS-1
+workspace $workspace4 output LVDS-1
+workspace $workspace5 output LVDS-1
+workspace $workspace6 output VGA-1
+workspace $workspace7 output VGA-1
+workspace $workspace8 output VGA-1
+workspace $workspace9 output VGA-1
+workspace $workspace0 output VGA-1
+
+#assign [class="^URxvt$"] $workspace1
+#assign [class="^Firefox$"] $workspace2
+#assign [class="^Spotify$"] $workspace3
+#assign [class="^discord$"] $workspace5
+#assign [class="^Thunderbird$"] $workspace4
+#assign [class="^VBoxSDL"] $workspace10
+#assign [class="^.*"] $workspace6
 
 # Automatic Startup
 
 for_window [class="^URxvt$" title="^Scratchpad"] move scratchpad; scratchpad hide
 
 exec_always --no-startup-id compton -b
-exec_always --no-startup-id feh --no-fehbg --bg-fill /home/pwrhs/Backgrounds/Current/* 
-exec_always --no-startup-id killall polybar || true && polybar top
+#exec_always --no-startup-id feh --no-fehbg --bg-fill /home/pwrhs/Backgrounds/Current/* 
+exec_always --no-startup-id wal -R
+exec_always --no-startup-id polybar -r top
 
 exec --no-startup-id "urxvt -name Scratchpad"  
 #exec --no-startup-id firefox; 
@@ -77,7 +92,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec i3-msg exit
 
 # Autostart
-bindsym $mod+c exec "/home/pwrhs/Scripts/ConnectVPN.sh CA_Toronto"
+bindsym $mod+c exec "/home/pwrhs/Scripts/ConnectVPN.sh CA-Toronto"
 bindsym $mod+m exec "VBoxSDL --startvm Kali"
 
 # Scratchpad
@@ -146,7 +161,7 @@ bindsym $mod+Ctrl+h resize shrink width 10 px or 10 ppt
 bindsym $mod+Ctrl+j resize shrink height 10 px or 10 ppt
 bindsym $mod+Ctrl+k resize grow height 10 px or 10 ppt
 bindsym $mod+Ctrl+l resize grow width 10 px or 10 ppt
-bindsym $mod+Ctrl+u gaps inner all minus 5
-bindsym $mod+Ctrl+i gaps inner all plus 5
-bindsym $mod+Ctrl+y gaps outer all minus 5
-bindsym $mod+Ctrl+o gaps outer all plus 5
+bindsym $mod+Ctrl+u gaps inner current minus 5
+bindsym $mod+Ctrl+i gaps inner current plus 5
+bindsym $mod+Ctrl+y gaps outer current minus 5
+bindsym $mod+Ctrl+o gaps outer current plus 5
