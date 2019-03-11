@@ -154,8 +154,8 @@ ramp-2 = 
 
 [module/playerctl]
 type = custom/script
-exec = if [ -n "$(playerctl metadata title)" ]; then echo "   "$(playerctl metadata artist) - $(playerctl metadata title)" "; fi
-exec-if = playerctl metadata 
+exec = echo "   "$(playerctl metadata artist)" - "$(playerctl metadata title)""
+exec-if = playerctl metadata 2>&1 | xargs -I "{}" test {} != "No players found"
 tail = false
 interval = 5  		      
 format-prefix = "|    " 
