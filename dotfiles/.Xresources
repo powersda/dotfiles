@@ -60,6 +60,9 @@ URxvt.scrollTtyOutput:		false
 URxvt.url-launcher:		/usr/bin/firefox
 URxvt.visualBell:		true
 URxvt.letterSpace:	        0
+URxvt.perl-ext-common:          keyboard-select
+URxvt.keysym.M-Escape:          perl:keyboard-select:activate
+URxvt.keyboard-select.clipboard:true
 
 !Font Settings-------------------------------------------------------------
 !Xft.dpi:			96
