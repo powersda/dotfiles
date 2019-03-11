@@ -41,7 +41,7 @@ font-1 = FontAwesome:pixelsize=10;3
 font-2 = Unifont:pixelsize=12;3
 
 modules-left = i3 playerctl
-modules-right = vpn bluetooth eth wlan filesystem memory cpu temperature battery date
+modules-right = vpn bluetooth eth wlan filesystem memory cpu temperature audio battery date
 
 [module/i3]
 type = internal/i3
@@ -122,7 +122,7 @@ poll-interval = 5
 format-charging = <animation-charging> <label-charging>
 label-battery = %percentage:2%% 
 format-discharging = <ramp-capacity> <label-discharging>
-label-discharging = %percentage:4%%
+label-discharging = %percentage:2%%
 format-full = <ramp-capacity> <label-full>
 label-full = %percentage:2%%
 
@@ -163,7 +163,7 @@ format-prefix-foreground = ${colors.background-alt}
 format = <label>
 format-underline =${colors.foreground}
 format-prefix-underline = ${colors.background}
-label = %output:0:75:...%
+label = %output:0:50:...%
 
 [module/vpn]
 type = custom/script
@@ -178,6 +178,12 @@ exec = if hcitool conn | grep -E '<|>' &> /dev/null; then echo ""; else echo 
 interval = 3
 label = %output%
 tail = false
+
+[module/audio]
+type = internal/pulseaudio
+format-volume =  <label-volume>
+label-muted =  Mute
+label-volume = %percentage:2%%
 
 [settings]
 screenchange-reload = true

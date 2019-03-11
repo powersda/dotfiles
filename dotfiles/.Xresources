@@ -2,7 +2,7 @@
 #define _background #282828
 #define _foreground #ebdbb2
 #define _transparent #00000000
-#define _semitransparent #D0282828
+#define _semitransparent #F2282828
 ! Black + DarkGrey
 #define _color0 #222222
 #define _color8 #928374
@@ -50,8 +50,7 @@
 *.transparent: _transparent
 
 !URxvt Settings ----------------------------------------------------------
-URxvt.font:			xft:inconsolata:pixelsize=14,xft:FontAwesome:pixelsize=14,xft:unifont:pixelsize=14
-URxvt.boldFont:			xft:inconsolata:Bold:pixelsize=14,FontAwesome:pixelsize=14,xft:unifont:pixelsize=14
+URxvt.font:			xft:DinaR:size=9,xft:FontAwesome:pixelsize=14,xft:unifont:pixelsize=14
 URxvt.scrollBar:		false
 URxvt.depth:			32
 !URxvt.background:		rgba:0000/0000/0000/D367	
@@ -63,10 +62,10 @@ URxvt.visualBell:		true
 URxvt.letterSpace:	        0
 
 !Font Settings-------------------------------------------------------------
-Xft.dpi:			96
-Xft.antialias:			true
-Xft.hinting:			true
-Xft.hintstyle:			hintslight
+!Xft.dpi:			96
+!Xft.antialias:			true
+!Xft.hinting:			true
+!Xft.hintstyle:			hintslight
 
 !Rofi Settings-------------------------------------------------------------
 rofi.lines:			5

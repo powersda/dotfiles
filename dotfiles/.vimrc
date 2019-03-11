@@ -7,12 +7,14 @@ call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'       " let Vundle manage Vundle, required
     Plugin 'vimwiki/vimwiki'
     Plugin 'terryma/vim-smooth-scroll'
+    Plugin 'tpope/vim-commentary'
 call vundle#end()
 
 " Editor Options
 syntax enable                   " enable syntax highlighting
 filetype plugin on              " enable plugins
 set number                      " show line numbers
+" set relativenumber              " show relative numbers
 set softtabstop=4               " set tabs to have 4 spaces
 set autoindent                  " indent when moving to the next line while writing code
 set expandtab                   " expand tabs into spaces

@@ -68,8 +68,8 @@ for_window [class="^URxvt$" title="^Scratchpad"] move scratchpad; scratchpad hid
 exec_always --no-startup-id compton -b
 #exec_always --no-startup-id feh --no-fehbg --bg-fill /home/pwrhs/Backgrounds/Current/* 
 exec_always --no-startup-id wal -R
-exec_always --no-startup-id polybar -r top
 
+exec --no-startup-id polybar -r top
 exec --no-startup-id "urxvt -name Scratchpad"  
 #exec --no-startup-id firefox; 
 #exec --no-startup-id spotify;
@@ -92,8 +92,8 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec i3-msg exit
 
 # Autostart
-bindsym $mod+c exec "/home/pwrhs/Scripts/ConnectVPN.sh CA-Toronto"
-bindsym $mod+m exec "VBoxSDL --startvm Kali"
+bindsym $mod+c exec --no-startup-id "/home/pwrhs/Scripts/ConnectVPN.sh CA-Toronto" 
+bindsym $mod+m exec --no-startup-id "VBoxSDL --startvm Kali" 
 
 # Scratchpad
 bindsym $mod+grave scratchpad show

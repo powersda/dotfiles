@@ -34,3 +34,5 @@ for line in $(cat "$1"); do
         fi
     fi
 done
+
+exit 
