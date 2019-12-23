@@ -7,8 +7,9 @@
 
 alias ls='ls --color=auto'
 alias vlc='vlc --qt-minimal-view'
-alias ncmpcpp='pgrep mopidy && exec ncmpcpp || nohup mopidy &> /dev/null & exec ncmpcpp'
-PS1='[\u@\h \W]\$ '
 alias clock='tty-clock -tcC 4'
+alias mutt='neomutt'
+alias scrot='scrot -ze "mv \$f ~/Screenshots/\$f.png; echo \"Screeshot taken!\""'
 
+PS1='[\u@\h \W]\$ '
 (cat ~/.cache/wal/sequences &)

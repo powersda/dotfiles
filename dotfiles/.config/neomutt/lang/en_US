@@ -1,0 +1,20 @@
+
+# IMAP folders
+set my_inbox="Inbox"
+set my_drafts="Drafts"
+set my_drafts_noquote="Drafts"
+set my_sent="Sent"
+set my_sent_noquote="Sent"
+set my_trash="Deleted"
+set my_trash_noquote="Deleted"
+set my_junk="Junk"
+set my_junk_noquote="Junk"
+
+# Quotation and date formats
+set attribution="The %d, %n wrote:"
+set date_format="!%m/%d/%Y %H:%M"
+
+# Hours and dates
+set charset="utf-8"
+set assumed_charset="utf-8"
+set send_charset="utf-8:us-ascii"

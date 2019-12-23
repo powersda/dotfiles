@@ -26,12 +26,12 @@ for line in $(cat "$1"); do
             fi
             mv "$expandedDirectory" "$dotfileDirectory"/"$fileName" && echo "Moved \"$fileName\" to "$dotfileDirectory""
         fi
-
-        if [ -f "$dotfileDirectory"/"$fileName" ]; then
-            ln -sf "$PWD"/"$dotfileDirectory"/"$fileName" "$expandedDirectory" && echo "Created/updated symlink at "$expandedDirectory""
-        else
-            echo "Failed to retrieve "$expandedDirectory". No symlink created!."
-        fi
+    fi
+ 
+    if [ -f "$dotfileDirectory"/"$fileName" ]; then
+        ln -sf "$PWD"/"$dotfileDirectory"/"$fileName" "$expandedDirectory" && echo "Created/updated symlink at "$expandedDirectory""
+    else
+        echo "Failed to retrieve "$expandedDirectory". No symlink created!."
     fi
 done
 

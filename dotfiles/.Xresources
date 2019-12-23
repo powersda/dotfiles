@@ -50,19 +50,15 @@
 *.transparent: _transparent
 
 !URxvt Settings ----------------------------------------------------------
-URxvt.font:			xft:DinaR:size=9,xft:FontAwesome:pixelsize=14,xft:unifont:pixelsize=14
+URxvt.font: xft:Hack:size=9,xft:FontAwesome:pixelsize=14,xft:unifont:pixelsize=14
 URxvt.scrollBar:		false
 URxvt.depth:			32
 !URxvt.background:		rgba:0000/0000/0000/D367	
 URxvt.cursorBlink:		true
 URxvt.scrollTtyKeypress:	true
 URxvt.scrollTtyOutput:		false
-URxvt.url-launcher:		/usr/bin/firefox
 URxvt.visualBell:		true
 URxvt.letterSpace:	        0
-URxvt.perl-ext-common:          keyboard-select
-URxvt.keysym.M-Escape:          perl:keyboard-select:activate
-URxvt.keyboard-select.clipboard:true
 
 !Font Settings-------------------------------------------------------------
 !Xft.dpi:			96

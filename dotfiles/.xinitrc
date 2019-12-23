@@ -8,7 +8,7 @@ xmodmap -e "keycode 135 = Super_R"
 
 # Check for external monitor, and connect
 if xrandr | grep "VGA-1 connected" &> /dev/null; then
-    xrandr --output VGA-1 --above LVDS-1 --auto
+    xrandr --output VGA-1 --right-of LVDS-1 --auto
 fi
 
 # Load i3-gaps
