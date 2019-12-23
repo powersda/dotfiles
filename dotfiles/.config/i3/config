@@ -65,7 +65,7 @@ workspace $workspace0 output VGA-1
 
 for_window [class="^URxvt$" title="^Scratchpad"] move scratchpad; scratchpad hide
 
-exec_always --no-startup-id compton -b
+exec_always --no-startup-id picom -b
 #exec_always --no-startup-id feh --no-fehbg --bg-fill /home/pwrhs/Backgrounds/Current/* 
 exec_always --no-startup-id wal -R
 
@@ -92,7 +92,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec i3-msg exit
 
 # Autostart
-bindsym $mod+c exec --no-startup-id "/home/pwrhs/Scripts/ConnectVPN.sh CA-Toronto" 
+bindsym $mod+c exec --no-startup-id "/home/pwrhs/Scripts/ConnectVPN.sh CA_Toronto" 
 bindsym $mod+m exec --no-startup-id "VBoxSDL --startvm Kali" 
 
 # Scratchpad
