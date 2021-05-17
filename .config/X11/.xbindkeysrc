@@ -1,0 +1,52 @@
+# use it if you want to catch release events instead of press events
+
+# By defaults, xbindkeys does not pay attention with the modifiers
+# NumLock, CapsLock and ScrollLock.
+# Uncomment the lines above if you want to pay attention to them.
+
+#keystate_numlock = enable
+#keystate_capslock = enable
+#keystate_scrolllock= enable
+
+"pamixer -i 5 && kill -36 $(pidof dwmblocks)"
+    XF86AudioRaiseVolume
+
+"pamixer -d 5 && kill -36 $(pidof dwmblocks)"
+    XF86AudioLowerVolume
+
+"pamixer --toggle-mute && kill -36 $(pidof dwmblocks)"
+    XF86AudioMute
+
+"pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+    XF86AudioMicMute
+
+ "light -U 5"
+    XF86MonBrightnessDown
+
+ "light -A 5"
+    XF86MonBrightnessUp
+
+"~/.local/bin/dmenuscripts/connectvpn"
+    Mod4 + c
+
+"playerctl -a play-pause"
+    Control + XF86AudioMute
+
+"playerctl -a stop"
+    Control + XF86AudioLowerVolume
+
+"playerctl -a previous"
+    Control + XF86AudioRaiseVolume
+
+"playerctl -a next"
+    Control + XF86AudioMicMute
+
+
+
+
+        
+
+
+##################################
+# End of xbindkeys configuration #
+##################################

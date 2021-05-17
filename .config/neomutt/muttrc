@@ -1,33 +1,32 @@
 ## Basic configuration
-macro index,pager <f2> '<change-folder>imaps://outlook.office365.com/Inbox<enter>'
-macro index,pager <f3> '<change-folder>imaps://imap.gmail.com<enter>'
-folder-hook 'outlook.office365.com' source ~/.config/neomutt/accounts/outlook
-folder-hook 'gmail.com' source ~/.config/neomutt/accounts/gmail
+
+ macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/gmail<enter><change-folder>!<enter>'
+ macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/outlook<enter><change-folder>!<enter>'
+
+# source "~/.config/neomutt/accounts/gmail"
+# folder-hook $folder 'source ~/.config/neomutt/accounts/gmail'
+
 source "~/.config/neomutt/accounts/outlook"
+# folder-hook $folder 'source ~/.config/neomutt/accounts/outlook'
 
 # IMAP config
-set spoolfile= +$my_inbox
-set postponed= +$my_drafts
-set record = +$my_sent
-set trash = +$my_trash
-set imap_check_subscribed="yes"
-set imap_list_subscribed="yes"
-set timeout=15
-set mail_check=90
-set imap_keepalive=180
-set imap_idle
-unset mark_old
-set ssl_use_sslv3=yes
+# set imap_check_subscribed="yes"
+# set imap_list_subscribed="yes"
+# set timeout=15
+# set mail_check=90
+# set imap_keepalive=180
+# set imap_idle = "yes"
+# unset mark_old
+# set ssl_use_sslv3=yes
+set mbox_type = Maildir
 
 # SMTP config
 set ssl_force_tls = yes
 set smtp_authenticators = "login"
 
-## More settings
-
 # Quotation and date formats
 set attribution="The %d, %n wrote:"
-set date_format="!%m/%d/%Y %H:%M"
+set date_format="!%b %d %I:%M%p"
 
 # Hours and dates
 set charset="utf-8"
@@ -35,22 +34,32 @@ set assumed_charset="utf-8"
 set send_charset="utf-8:us-ascii"
 
 # File storage settings
-set signature="~/.mutt/signature"
-set message_cachedir="~/.mutt/message_cache"
-set header_cache="~/.mutt/header_cache"
-set tmpdir="~/.mutt/tmp"
+unset signature
+set message_cachedir="~/.cache/mutt/message_cache"
+set header_cache="~/.cache/mutt/header_cache"
+set mailcap_path="~/.config/neomutt/mailcap"
 
 # Text view first
+set wait_key= no # skip "press to continue"
+set fast_reply
+set fcc_attach
+set forward_format = "Fwd: %s"
+set pipe_decode=yes
+set include= no
+#set pager_index_lines= 5 # how large is the index window?
 set pager_stop="yes"
 set smart_wrap="yes"
-alternative_order text/plain
-auto_view text/html
+#alternative_order text/plain
+#auto_view text/html
+set implicit_autoview = "yes"
 set reverse_name=yes
 set reverse_realname=yes
 
 # Text editor
 #set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
-set editor="vim"
+set editor="vim +':set textwidth=0' +':set wrapmargin=0' +'set wrap' +'set linebreak'"
+set markers=no # don't put '+' at the beginning of wrapped lines
+set text_flowed=yes
 
 # Address book handling
 set sort_alias=alias
@@ -63,13 +72,15 @@ set sort = 'reverse-date-received'
 set sort_browser="reverse-date"
 set sort_aux="last-date-received"
 unset collapse_unread
-set index_format=" %?M?   ↳&%4C?    %Z   %-20.20n   %-50.50s  %D"
+set index_format=" %?M?&%-4C? %D  %Z   %-25.25n   %-100.100s"
 
 # Sidebar
+set mail_check_stats        #Updates sidebar new mail count
 set sidebar_visible = yes
 set sidebar_folder_indent = yes
-set sidebar_non_empty_mailbox_only = yes
-set sidebar_format = "%B%* %?N?%N?"
+#set sidebar_non_empty_mailbox_only = yes
+set sidebar_sort_method = "alpha"
+set sidebar_format = "%B%* %?N?%N/?"
 bind index,pager B sidebar-toggle-visible
 bind index,pager <Tab> sidebar-next
 bind index,pager <Backtab> sidebar-prev
@@ -119,7 +130,3 @@ color   header      brightblue default ^Subject:
 color   body        brightred default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
 color   body        brightblue default (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
 
-# For better looks
-set markers=no # don't put '+' at the beginning of wrapped lines
-set pipe_decode=yes
-#set pager_index_lines= 5 # how large is the index window?
