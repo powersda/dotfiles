@@ -1,0 +1,145 @@
+!Colours------------------------------
+#define _foreground #d8dee9
+!#define _background #0F111A
+#define _background #282828
+
+!#define _color0  #3b4252
+!#define _color1  #bf616a
+!#define _color2  #a3be8c
+!#define _color3  #ebcb8b
+!#define _color4  #81a1c1
+!#define _color5  #b48ead
+!#define _color6  #88c0d0
+!#define _color7  #e5e9f0
+!#define _color8  #4c566a
+!#define _color9  #bf616a
+!#define _color10 #a3be8c
+!#define _color11 #ebcb8b
+!#define _color12 #81a1c1
+!#define _color13 #b48ead
+!#define _color14 #8fbcbb
+!#define _color15 #eceff4
+
+! Black
+#define _color0 #1e2132
+#define _color8 #6b7089
+!
+! Red
+#define _color1 #e27878
+#define _color9 #e98989
+!
+! Green
+#define _color2 #b4be82
+#define _color10 #c0ca8e
+!
+! Yellow
+#define _color3 #e2a478
+#define _color11 #e9b189
+!
+! Blue
+#define _color4 #84a0c6
+#define _color12 #91acd1
+!
+! Magenta
+#define _color5 #a093c7
+#define _color13 #ada0d3
+!
+! Cyan
+#define _color6 #89b8c2
+#define _color14 #95c4ce
+!
+! White
+#define _color7 #c6c8d1
+#define _color15 #d2d4de
+
+#define _systemFont Ubuntu Nerd Font:size=12:antialias=true:autohint=true
+#define _consoleFont Hack Nerd Font Mono FC Ligatured:size=11
+
+!dwm-----------------------------------
+dwm.font:               _systemFont  
+dwm.dmenufont:          _systemFont
+dwm.background:         _background
+dwm.foreground:         _foreground
+!dwm.selbgcolor:         _foreground  /* dwm will invert fg+bg for selfg+selbg */
+!dwm.selfgcolor:         _background
+dwm.normbordercolor:    _color8
+dwm.selbordercolor:     _foreground
+dwm.borderpx:           2
+dwm.snap:               32
+dwm.showbar:            1
+dwm.topbar:             1
+dwm.nmaster:            1
+dwm.resizehints:        0
+dwm.mfact:              0.5
+dwm.gappih:             10
+dwm.gappiv:             10
+dwm.gappov:             30
+dwm.gappoh:             30  
+dwm.user_bh:            25
+dwm.systraypinning:     0
+dwm.systrayonleft:      0
+dwm.systrayspacing:     2
+dwm.systraypinningfailfirst: 1
+dwm.showsystray:        1
+dwm.pushSysTrayRight:   12
+dwm.pushSBRight:        20
+dwm.col1:               _color5
+dwm.col2:               #ffffff
+dwm.col3:               #ffffff
+dwm.col4:               #ffffff
+dwm.col5:               #ffffff
+dwm.col6:               #ffffff
+dwm.swallowfloating:    0
+dwm.attachBelow:        1
+
+
+!st-------------------------------------
+st.font:                _consoleFont
+st.color0:              _color0
+st.color1:              _color1
+st.color2:              _color2
+st.color3:              _color3
+st.color4:              _color4
+st.color5:              _color5
+st.color6:              _color6
+st.color7:              _color7
+st.color8:              _color8
+st.color9:              _color9
+st.color10:             _color10
+st.color11:             _color11
+st.color12:             _color12
+st.color14:             _color14
+st.color15:             _color15
+st.cursorbg:            _foreground
+st.cursorbgr:           _color15
+st.background:          _background
+st.foreground:          _foreground
+st.termname:            st-256color
+st.shell:               /bin/sh
+st.minlatency:          8
+st.maxlatency:          33
+st.blinktimeout:        800
+st.bellvolume:          0
+st.tabspaces:           4
+st.borderpx:            2
+st.cwscale:             0.9
+st.chscale:             1.0
+st.alpha:               0.80
+st.cursorstyle:         1
+
+!sxiv-------------------------------------
+Sxiv.font:              _consoleFont
+Sxiv.background:        _background
+Sxiv.foreground:        _foreground
+
+!dmenu------------------------------------
+dmenu.font:             _systemFont
+dmenu.background:       _background /* Input box bg colour */
+dmenu.foreground:       _foreground /* Input box text colour */
+dmenu.selbackground:    _foreground /* Options bg colour */
+dmenu.selforeground:    _background /* Options text colour */
+dmenu.hlbackground:     _background /* Fuzzy char in input box highlight colour */
+dmenu.hlforeground:     _color5     /* Fuzzy char in input box text colour */
+dmenu.selhlbackground:  _foreground /* Fuzzy char in options highlight colour */
+dmenu.selhlforeground:  _color5     /* Fuzzy char in options text colour */
+

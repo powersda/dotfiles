@@ -2,9 +2,10 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-set rtp+=~/.vim/bundle/Vundle.vim       " set the runtime path to include Vundle and initialize
+set rtp+=~/.config/vim/bundle/Vundle.vim       " set the runtime path to include Vundle and initialize
+call vundle#rc("~/.config/vim/bundle")
 call vundle#begin()
-    Plugin 'VundleVim/Vundle.vim'       " let Vundle manage Vundle, required
+    Plugin 'VundleVim/Vundle.vim'     
     Plugin 'vimwiki/vimwiki'
     Plugin 'terryma/vim-smooth-scroll'
     Plugin 'tpope/vim-commentary'
@@ -20,6 +21,9 @@ set autoindent                  " indent when moving to the next line while writ
 set expandtab                   " expand tabs into spaces
 set shiftwidth=4                " when using the >> or << commands, shift lines by 4 spaces
 set wildmenu                    " show visual autocomplete menu
+set viminfo+=n~/.vim/viminfo    " change location of .viminfo
+set title                       " set window title
+" set backspace=indent,eol,start  " enable backspacing special characters
 let python_highlight_all = 1    " enable all Python syntax highlighting features
 
 " vimwiki config
