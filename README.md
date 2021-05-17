@@ -14,3 +14,4 @@ Software I'm currently using:
 * Images: sxiv
 * Editor: vim
 * Mail: neomutt, mbsync, msmtp, goimapnotify, mailnotify
+* PDFs: zathura
