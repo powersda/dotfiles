@@ -3,6 +3,7 @@ A collection of scripts and configuration files stored here for backup, remote a
 
 Software I'm currently using:
 
+* Distro: arch
 * Window Manager: dwm + dwmblocks
 * Terminal: st
 * Compositor: picom (ibhagwan fork)
