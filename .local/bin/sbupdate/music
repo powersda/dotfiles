@@ -1,0 +1,31 @@
+#!/bin/sh
+
+maxDwmChar=73  #Max width - icon size(6?) - delim size
+
+if pgrep cmus &> /dev/null && [ "$(playerctl -p cmus status)" != "Stopped" ]; then
+    info="$([ "$(playerctl -p cmus status)" = "Playing" ] && echo '契' || echo '') $(playerctl -p cmus metadata title) - $(playerctl -p cmus metadata artist)"
+elif pgrep spotifyd &> /dev/null && [ "$(playerctl -p spotifyd status)" != "Stopped" ]; then
+    info="$(spt pb 2>&1)"
+    [ "$info" = "Error: no context available" ] && unset info
+fi
+
+if [ -n "$info" ]; then
+    (( "${#info}" > $maxDwmChar )) && info="${info:0:(($maxDwmChar - 3))}..."
+    printf %s "$info"
+fi
+exit
+#pidof -x sb-mpdup >/dev/null 2>&1 || sb-mpdup >/dev/null 2>&1 &
+
+# case $BLOCK_BUTTON in
+# 	1) mpc status | filter ; setsid -f "$TERMINAL" -e ncmpcpp ;;  # right click, pause/unpause
+# 	2) mpc toggle | filter ;;  # right click, pause/unpause
+# 	3) mpc status | filter ; notify-send "🎵 Music module" "\- Shows mpd song playing.
+# - ⏸ when paused.
+# - Left click opens ncmpcpp.
+# - Middle click pauses.
+# - Scroll changes track.";;  # right click, pause/unpause
+# 	4) mpc prev   | filter ;;  # scroll up, previous
+# 	5) mpc next   | filter ;;  # scroll down, next
+# 	6) mpc status | filter ; "$TERMINAL" -e "$EDITOR" "$0" ;;
+# 	*) mpc status | filter ;;
+# esac
