@@ -1,7 +1,7 @@
 # dotfiles
 A collection of scripts and configuration files stored here for backup, remote access, and the perusal of others.
 
-* Window Manager: dwm
+* Window Manager: dwm + dwmblocks
 * Terminal: st
 * Compositor: picom (ibhagwan fork)
 * Browser: firefox
