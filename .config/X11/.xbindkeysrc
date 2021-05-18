@@ -20,10 +20,10 @@
 "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
     XF86AudioMicMute
 
- "light -U 5"
+"light -U 5"
     XF86MonBrightnessDown
 
- "light -A 5"
+"light -A 5"
     XF86MonBrightnessUp
 
 "~/.local/bin/dmenuscripts/connectvpn"
@@ -40,6 +40,12 @@
 
 "playerctl -a next"
     Control + XF86AudioMicMute
+
+"scrot -se 'mv $f ~/screenshots'"
+    Mod4 + s
+
+"scrot -e 'mv $f ~/screenshots'"
+    Mod4 + Shift + s
 
 
 
