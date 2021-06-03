@@ -42,8 +42,8 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 30, 4) <CR>
 let g:netrw_liststyle = 3       " Set default file list style
 let g:netrw_banner = 0          " Get rid of the banner
 let g:netrw_winsize = 15        " Number of columns that netrw will take up
-let g:netrw_browse_split = 4    " Change what window netrw opens files in
-let g:netrw_altv = 1            " Change vertical panel to the left side
+let g:netrw_browse_split = 2    " Change what window netrw opens files in
+"let g:netrw_altv = 1            " Change vertical panel to the left side
 let g:netrw_preview = 1         " Change preview to vertical split
 let g:netrw_keepdir = 0         " Let the netrw cd move with gn command
 

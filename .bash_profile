@@ -9,6 +9,6 @@ export LESSHISTFILE=-
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # If using tty1, start X11
- if [[ "$(tty)" == "/dev/tty1" ]]; then
- 	exec startx ~/.config/X11/.xinitrc
- fi
+if [[ "$(tty)" == "/dev/tty1" ]]; then
+    exec startx ~/.config/X11/.xinitrc
+fi

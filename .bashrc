@@ -9,6 +9,8 @@ alias vim="vim -u ~/.config/vim/.vimrc"
 alias mbsync="mbsync -c ~/.config/neomutt/mbsyncrc"
 alias spt="pgrep spotifyd &> /dev/null || spotifyd && spt"
 alias clock="tty-clock -ct"
+alias EDITOR="nvim"
+#alias vim="nvim"
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return

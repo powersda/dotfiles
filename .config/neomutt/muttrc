@@ -80,10 +80,10 @@ set sidebar_visible = yes
 set sidebar_folder_indent = yes
 #set sidebar_non_empty_mailbox_only = yes
 set sidebar_sort_method = "alpha"
-set sidebar_format = "%B%* %?N?%N/?"
+set sidebar_format = " %B%* %?N?%N/?"
 bind index,pager B sidebar-toggle-visible
-bind index,pager <Tab> sidebar-next
-bind index,pager <Backtab> sidebar-prev
+bind index,pager \cj sidebar-next
+bind index,pager \ck sidebar-prev
 bind index,pager g sidebar-open
 
 
@@ -97,6 +97,7 @@ macro   index   Q           ":set quit=yes\nq" "Quit mutt without asking"
 bind    index   C           noop
 bind    index   -           collapse-thread
 bind    index   _           collapse-all
+bind    index   +           what-key
 
 
 # Pager
