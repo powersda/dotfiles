@@ -41,10 +41,10 @@
 "playerctl -a next"
     Control + XF86AudioMicMute
 
-"scrot -se 'mv $f ~/screenshots'"
+"scrot -se 'mv $f ~/screenshots' $(date +%b%d_%T.png)"
     Mod4 + s
 
-"scrot -e 'mv $f ~/screenshots'"
+"scrot -e 'mv $f ~/screenshots' $(date +%b%d_%T.png)"
     Mod4 + Shift + s
 
 
