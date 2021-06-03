@@ -1,12 +1,12 @@
 # dotfiles
 
-![Screenshot](screenshot)
+![Screenshot](screenshot.png)
 
 A collection of scripts and configuration files stored here for backup, remote access, and the perusal of others.
 
 Software I'm currently using:
 
-* Distro: arch
+* Distro: Arch Linux
 * Window Manager: dwm + dwmblocks
 * Terminal: st
 * Compositor: picom (ibhagwan fork)
