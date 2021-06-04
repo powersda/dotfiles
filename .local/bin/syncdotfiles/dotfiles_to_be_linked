@@ -14,6 +14,7 @@
 ~/.config/X11/.xbindkeysrc
 ~/.config/X11/.xinitrc
 ~/.config/X11/.xresources
+~/.config/zathura/zathurarc
 ~/.local/bin/dmenuscripts/connectvpn
 ~/.local/bin/hotplug
 ~/.local/bin/sbupdate/battery
