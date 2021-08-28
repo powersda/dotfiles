@@ -6,7 +6,8 @@ A collection of scripts and configuration files stored here for backup, remote a
 
 Software I'm currently using:
 
-* Distro: Arch Linux
+* Distro: Arch
+* Shell: bash
 * Window Manager: dwm + dwmblocks
 * Terminal: st
 * Compositor: picom (ibhagwan fork)
@@ -16,7 +17,7 @@ Software I'm currently using:
 * Media: mpv
 * Notifications: dunst
 * Images: sxiv
-* Editor: vim
+* Editor: nvim
 * Fetch: neofetch
 * Mail: neomutt, mbsync, msmtp, goimapnotify, mailnotify
 * PDFs: zathura

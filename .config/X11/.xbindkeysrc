@@ -14,9 +14,11 @@
 "pamixer -d 5 && kill -36 $(pidof dwmblocks)"
     XF86AudioLowerVolume
 
-"pamixer --toggle-mute && kill -36 $(pidof dwmblocks)"
+# Mute both default and active so that laptop LED updates
+"pactl set-sink-mute @DEFAULT_SINK@ toggle && kill -36 $(pidof dwmblocks)"
     XF86AudioMute
 
+# Mute both default and active so that laptop LED updates
 "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
     XF86AudioMicMute
 
@@ -41,17 +43,11 @@
 "playerctl -a next"
     Control + XF86AudioMicMute
 
-"scrot -se 'mv $f ~/screenshots' $(date +%b%d_%T.png)"
-    Mod4 + s
-
-"scrot -e 'mv $f ~/screenshots' $(date +%b%d_%T.png)"
+"scrot -sl mode=edge,opacity=10 -e 'xclip -sel c -t image/png -i $f && mv  $f /tmp && notify-send -i /usr/share/icons/Adwaita/48x48/devices/camera-photo-symbolic.symbolic.png \"Screensnip sent to clipboard!\"'"
     Mod4 + Shift + s
 
-
-
-
-        
-
+"scrot -oe 'xclip -sel c -t image/png -i $f && mv $f ~/screenshots && notify-send -i /usr/share/icons/Adwaita/48x48/devices/camera-photo-symbolic.symbolic.png \"Screenshot Taken!\" \"Saved as \\\"$f\\\"\"' $(dmenu -p 'Screenshot name: ' < /dev/null || date +%b%d_%T.png)"
+    Mod4 + s
 
 ##################################
 # End of xbindkeys configuration #

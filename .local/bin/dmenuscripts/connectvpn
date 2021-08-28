@@ -1,4 +1,5 @@
 #!/bin/sh
+
 if [ -h "/sys/class/net/tun0" ]; then
     sudo systemctl stop openvpn-client@*.service
 else
@@ -6,4 +7,5 @@ else
     [ -z "$profile" ] && exit
     sudo systemctl start openvpn-client@$profile.service 
 fi
+
 exit

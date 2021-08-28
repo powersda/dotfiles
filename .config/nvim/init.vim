@@ -1,38 +1,45 @@
 " General
-set nocompatible		        " disable compatibility to vi
-set title				        " set window title
-set noerrorbells                " no beeping!
-set backspace=indent,eol,start  " allow backspacing over special characters
-set termguicolors               " enables 24-bit colour support
+set nocompatible		            " disable compatibility to vi
+set title				            " set window title
+set noerrorbells                    " no beeping!
+set backspace=indent,eol,start      " allow backspacing over special characters
+set termguicolors                   " enables 24-bit colour support
+set guicursor=                      " stop nvim from changing console cursor!
+" set foldmethod=expr                 " Fold by treesitter nodes
+" set foldexpr=nvim_treesitter#foldexpr()
 
 " Text rendering
-set encoding=UTF-8              " ensure UTF-8 encoding for special characters
-set linebreak                   " avoid wrapping line in the middle of a world
-set wrap                        " enable line wrapping
+set encoding=UTF-8                  " ensure UTF-8 encoding for special characters
+set linebreak                       " avoid wrapping line in the middle of a world
+set wrap                            " enable line wrapping
 
 " Searching
-set ignorecase			        " case insensitive matching
-set smartcase                   " case sensitive matching if uppercase included
-set hlsearch			        " highlight search results
+set ignorecase			            " case insensitive matching
+set smartcase                       " case sensitive matching if uppercase included
+set hlsearch			            " highlight search results
+nnoremap <silent> <CR> :noh<CR>
 
 " Tabs and indenting
-set tabstop=4			        " tab characters are 4 columns wide
-set softtabstop=4		        " insert mode tabs move the cursor 4 columns
-set expandtab			        " tab characters are expanded to spaces
-set shiftwidth=4		        " width for autoindents
-set autoindent			        " autoindent lines to previous line indentation
+set tabstop=4			            " tab characters are 4 columns wide
+set softtabstop=4		            " insert mode tabs move the cursor 4 columns
+set expandtab			            " tab characters are expanded to spaces
+set shiftwidth=4		            " width for autoindents
+set autoindent			            " autoindent lines to previous line indentation
 
 " Line Numbers
-set number				        " line numbers
-set relativenumber              " use numbers relative to current line
+set number				            " line numbers
+set relativenumber                  " use numbers relative to current line
 
 " Autocompletion
-set wildmenu			        " show visual autocomplete menu
-set wildmode=longest:full,full  " autocomplete to longest common match, then open wildmenu and cycle
-set wildoptions=pum             " vertical wildmenu
+set wildmenu			            " show visual autocomplete menu
+set wildmode=longest:full,full      " autocomplete: longest common match -> open wildmenu + cycle
+set wildoptions=pum                 " vertical wildmenu
 
-syntax on				        " syntax highlighting
-filetype plugin indent on		" enable plugins
+" Terminal Mode
+autocmd TermOpen * setlocal nonumber norelativenumber
+
+syntax on				            " syntax highlighting
+filetype plugin indent on		    " enable plugins
 
 call plug#begin('~/.local/share/nvim/plugged')
     Plug 'vimwiki/vimwiki'				" Vim Wiki
@@ -43,6 +50,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'hoob3rt/lualine.nvim'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 " vimwiki config
@@ -149,3 +157,26 @@ nnoremap <leader>n :NvimTreeFindFile<CR>
             \ tabline = {},
             \ extensions = {'nvim-tree'}
                 \ }
+
+" treesitter config
+:lua << EOF
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = {"python", "bash", "c", "cpp"},
+    highlight = {
+        enable = true
+    },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "gnn",
+            node_incremental = "grn",
+            scope_incremental = "grc",
+            node_decremental = "grm",
+        }
+    },
+    indent = {
+        enable = true
+    } 
+  
+}
+EOF
