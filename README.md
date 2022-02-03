@@ -1,7 +1,5 @@
 # dotfiles
 
-![Screenshot](screenshot.png)
-
 A collection of scripts and configuration files stored here for backup, remote access, and the perusal of others.
 
 Software I'm currently using:
