@@ -73,8 +73,8 @@ dwm.resizehints:        0
 dwm.mfact:              0.5
 dwm.gappih:             10
 dwm.gappiv:             10
-dwm.gappov:             30
-dwm.gappoh:             30  
+dwm.gappov:             28
+dwm.gappoh:             28
 dwm.user_bh:            25
 dwm.systraypinning:     0
 dwm.systrayonleft:      0

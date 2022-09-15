@@ -1,5 +1,6 @@
 #!/bin/sh
 
-[ -L /sys/class/bluetooth/hci0:256 ] && printf %s "" && sleep 4
-pkill -RTMIN+2 dwmblocks
+#[ -L /sys/class/bluetooth/hci0:256 ] && printf %s "" && sleep 4
+[ -L /sys/class/bluetooth/hci0:256 ] && printf %s "" 
+#pkill -RTMIN+2 dwmblocks
 

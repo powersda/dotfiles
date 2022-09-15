@@ -3,7 +3,11 @@
 maxDwmChar=73  #Max width - icon size(6?) - delim size
 
 if pgrep cmus &> /dev/null && [ "$(playerctl -p cmus status)" != "Stopped" ]; then
-    info="$([ "$(playerctl -p cmus status)" = "Playing" ] && echo '契' || echo '') $(playerctl -p cmus metadata title) - $(playerctl -p cmus metadata artist)"
+    # info="$([ "$(playerctl -p cmus status)" = "Playing" ] && echo '契' || echo '') $(playerctl -p cmus metadata title) - $(playerctl -p cmus metadata artist)"
+    info="$([ "$(playerctl -p cmus status)" = "Playing" ] && echo 't' || echo 'y') $(playerctl -p cmus metadata title) - $(playerctl -p cmus metadata artist)"
+elif pgrep spotify &> /dev/null && [ "$(playerctl -p spotify status)" != "Stopped" ]; then
+    info="$(spt pb 2>&1)"
+    [ "$info" = "Error: no context available" ] && unset info
 elif pgrep spotifyd &> /dev/null && [ "$(playerctl -p spotifyd status)" != "Stopped" ]; then
     info="$(spt pb 2>&1)"
     [ "$info" = "Error: no context available" ] && unset info

@@ -8,18 +8,22 @@
 #keystate_capslock = enable
 #keystate_scrolllock= enable
 
-"pamixer -i 5 && kill -36 $(pidof dwmblocks)"
+# "[ $(wpctl get-volume @DEFAULT_SINK@ | sed -e 's/[^0-9]//g;s/^00\?//g') -lt 100 ] && wpctl set-volume @DEFAULT_SINK@ 0.05+ && kill -36 $(pidof dwmblocks)"
+"[ $(wpctl get-volume @DEFAULT_SINK@ | sed -e 's/[^0-9]//g;s/^00\?//g') -lt 100 ] && wpctl set-volume @DEFAULT_SINK@ 0.05+"
     XF86AudioRaiseVolume
 
-"pamixer -d 5 && kill -36 $(pidof dwmblocks)"
+# "wpctl set-volume @DEFAULT_SINK@ 0.05- && kill -36 $(pidof dwmblocks)"
+"wpctl set-volume @DEFAULT_SINK@ 0.05-"
     XF86AudioLowerVolume
 
 # Mute both default and active so that laptop LED updates
-"pactl set-sink-mute @DEFAULT_SINK@ toggle && kill -36 $(pidof dwmblocks)"
+# "wpctl set-mute @DEFAULT_SINK@ toggle && kill -36 $(pidof dwmblocks)"
+"wpctl set-mute @DEFAULT_SINK@ toggle"
     XF86AudioMute
 
 # Mute both default and active so that laptop LED updates
-"pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+# "wpctl set-mute @DEFAULT_SOURCE@ toggle && kill -36 $(pidof dwmblocks)"
+"wpctl set-mute @DEFAULT_SOURCE@ toggle"
     XF86AudioMicMute
 
 "light -U 5"
@@ -43,11 +47,17 @@
 "playerctl -a next"
     Control + XF86AudioMicMute
 
-"scrot -sl mode=edge,opacity=10 -e 'xclip -sel c -t image/png -i $f && mv  $f /tmp && notify-send -i /usr/share/icons/Adwaita/48x48/devices/camera-photo-symbolic.symbolic.png \"Screensnip sent to clipboard!\"'"
+"scrot -s -l mode=edge,opacity=10 -e 'xclip -sel c -t image/png -i $f && mv  $f /tmp && notify-send -i /usr/share/icons/Adwaita/48x48/devices/camera-photo-symbolic.symbolic.png \"Screensnip sent to clipboard!\"'"
     Mod4 + Shift + s
 
-"scrot -oe 'xclip -sel c -t image/png -i $f && mv $f ~/screenshots && notify-send -i /usr/share/icons/Adwaita/48x48/devices/camera-photo-symbolic.symbolic.png \"Screenshot Taken!\" \"Saved as \\\"$f\\\"\"' $(dmenu -p 'Screenshot name: ' < /dev/null || date +%b%d_%T.png)"
+"scrot -o -e 'xclip -sel c -t image/png -i $f && mv $f ~/screenshots && notify-send -i /usr/share/icons/Adwaita/48x48/devices/camera-photo-symbolic.symbolic.png \"Screenshot Taken!\" \"Saved as \\\"$f\\\"\"' $(dmenu -p 'Screenshot name: ' < /dev/null || date +%b%d_%T.png)"
     Mod4 + s
+
+"dunstctl set-paused toggle && kill -42 $(pidof dwmblocks)"
+    Mod4 + n
+
+"loginctl lock-session"
+    Mod4 + l
 
 ##################################
 # End of xbindkeys configuration #

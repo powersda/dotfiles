@@ -1,9 +1,17 @@
+#!/bin/sh
+
 # Launch screen compositor
 picom --experimental-backends &
 
 # Set custom keybindings
 xmodmap -e "keycode 107 = Super_R"
 xbindkeys -f ~/.config/X11/.xbindkeysrc
+
+# Begin listening to sleep state to lock screen
+xss-lock -- slock &
+
+# Fix for android-studio rendering
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Intialize X11 database
 [[ -f ~/.config/X11/.xresources ]] && xrdb -merge -I $HOME ~/.config/X11/.xresources

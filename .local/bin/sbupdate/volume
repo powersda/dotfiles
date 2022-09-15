@@ -2,28 +2,22 @@
 
 # Prints the current volume or 🔇 if muted.
 
-case $BLOCK_BUTTON in
-	1) setsid -f "$TERMINAL" -e pulsemixer ;;
-	2) pamixer -t ;;
-	4) pamixer --allow-boost -i 1 ;;
-	5) pamixer --allow-boost -d 1 ;;
-	3) notify-send "📢 Volume module" "\- Shows volume 🔊, 🔇 if muted.
-- Middle click to mute.
-- Scroll to change." ;;
-	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
-esac
+[[ "$(wpctl get-volume @DEFAULT_SOURCE@)" == *"MUTED"* ]] && mic=" "
 
-[ $(pamixer --get-mute) = "true" ] && echo 🔇 Mute && exit
+[[ "$(wpctl get-volume @DEFAULT_SINK@)" == *"MUTED"* ]] && echo "$mic"ﱝ Mute && exit
 
-#vol="$(pulsemixer --get-volume | awk '{ print $1 }')"
-vol=$(pamixer --get-volume)
+#vol="$(pulsemixer --get-volume | awk '{ print $1 }'
+while [ -z "$vol" ]; do
+    vol="$(wpctl get-volume @DEFAULT_SINK@ | sed -e "s/[^0-9]//g;s/^00\?//g")"
+done
 
 if [ "$vol" -gt "70" ]; then
-	icon="🔊"
+	icon="墳"
 elif [ "$vol" -lt "30" ]; then
-	icon="🔈"
+	icon="奄"
 else
-	icon="🔉"
+	icon="奔"
 fi
 
-echo "$icon $vol%"
+
+echo "$mic""$icon" "$vol"%

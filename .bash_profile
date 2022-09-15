@@ -11,5 +11,5 @@ export EDITOR=nvim
 
 # If using tty1, start X11
 if [[ "$(tty)" == "/dev/tty1" ]]; then
-    exec startx ~/.config/X11/.xinitrc
+    exec startx ~/.config/X11/.xinitrc 
 fi

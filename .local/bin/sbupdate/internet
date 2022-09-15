@@ -16,8 +16,8 @@ case $BLOCK_BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
-	down) netwrk="📡 No connection" ;;
-	up) netwrk="$(awk '/^\s*w/ { print "📶", int($3 * 100 / 70) "%" }' /proc/net/wireless) - $(iw dev wlan0 info | awk '/ssid/{print $2}')" ;;
+	down) netwrk="睊 No connection" ;;
+	up) netwrk="$(awk '/^\s*w/ { print "", int($3 * 100 / 70) "%" }' /proc/net/wireless) - $(iw dev wlan0 link | awk '/SSID/{print $2}')" ;;
 esac
 
 if [ $(cat /sys/class/net/eth0/operstate) = "up" ]; then
