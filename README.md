@@ -4,12 +4,12 @@ A collection of scripts and configuration files stored here for backup, remote a
 
 Software I'm currently using:
 
-* Distro: Arch
+* Distro: Arch (btw)
 * Shell: bash
 * Window Manager: dwm + dwmblocks
 * Terminal: st
 * Compositor: picom (ibhagwan fork)
-* Browser: firefox
+* Browser: brave
 * Music: spotifyd + spotify-tui, cmus
 * Visualizer: cava
 * Media: mpv
