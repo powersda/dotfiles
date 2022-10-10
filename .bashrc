@@ -19,4 +19,6 @@ PS1='[\u@\h \W]\$ '
 # Update titlebar
 PROMPT_COMMAND='printf "\033]0;st: %s\007" "${PWD/#$HOME/"~"}"'
 
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+
 

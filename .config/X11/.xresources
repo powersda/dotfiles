@@ -143,3 +143,6 @@ dmenu.hlforeground:     _color5     /* Fuzzy char in input box text colour */
 dmenu.selhlbackground:  _foreground /* Fuzzy char in options highlight colour */
 dmenu.selhlforeground:  _color5     /* Fuzzy char in options text colour */
 
+!X11--------------------------------------
+Xcursor.size:           16 
+

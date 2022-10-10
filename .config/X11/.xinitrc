@@ -3,6 +3,9 @@
 # Launch screen compositor
 picom --experimental-backends &
 
+# Set up dual monitors
+~/.local/bin/hotplug
+
 # Set custom keybindings
 xmodmap -e "keycode 107 = Super_R"
 xbindkeys -f ~/.config/X11/.xbindkeysrc
