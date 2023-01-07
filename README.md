@@ -6,9 +6,8 @@ Software I'm currently using:
 
 * Distro: Arch (btw)
 * Shell: bash
-* Window Manager: dwm + dwmblocks
-* Terminal: st
-* Compositor: picom (ibhagwan fork)
+* Window Manager: hyprland
+* Terminal: kitty
 * Browser: brave
 * Music: spotifyd + spotify-tui, cmus
 * Visualizer: cava
