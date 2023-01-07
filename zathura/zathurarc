@@ -1,0 +1,15 @@
+set font "Hack Nerd Font Mono FC Ligatured normal 9"
+set guioptions ""
+
+set default-fg "#D8DEE9"
+set default-bg "rgba(40,40,40,0.8)"
+
+set inputbar-fg #D8DEE9
+set inputbar-bg "rgba(40,40,40,0.8)"
+
+set statusbar-fg "#D8DEE9"
+set statusbar-bg "rgba(40,40,40,0.8)"
+set statusbar-v-padding 15
+
+set inputbar-fg "#D8DEE9"
+set inputbar-bg "rgba(40,40,40,0.8)"

@@ -1,0 +1,189 @@
+// =============================================================================
+// Waybar configuration
+// =============================================================================
+
+{
+    // -------------------------------------------------------------------------
+    // Global configuration
+    // -------------------------------------------------------------------------
+
+    "layer": "top",
+
+    "position": "top",
+
+    /* "output": ["eDP-1", "HDMI-A-1"], */
+    /* "output": "eDP-1", */
+    /* "output": ["HDMI-A-1", "eDP-1"], */
+
+    // If height property would be not present, it'd be calculated dynamically
+    "height": 30,
+
+    "modules-left": [
+        "wlr/workspaces",
+        "hyprland/window",
+    ],
+
+    "modules-center": [
+        "custom/media"
+    ],
+
+    "modules-right": [
+        "custom/notifications",
+        "custom/mail",
+        "custom/pacman",
+        "bluetooth",
+        "custom/vpn",
+        "network",
+        "backlight",
+        "custom/microphone", 
+        "pulseaudio",
+        "battery",
+        "clock#date",
+        "clock#time",
+        "tray",
+    ],
+
+
+    // -------------------------------------------------------------------------
+    // Modules
+    // -------------------------------------------------------------------------
+
+    "hyprland/window": {
+        "separate-outputs": true
+    },
+
+    "custom/vpn": {
+        "format": "{}",
+        "interval": "once",
+        "exec": "[ -h \"/sys/class/net/tun0\" ] && echo ",
+        "signal": 11,
+    },
+
+    "custom/media": {
+        "format": "  {}",
+        "escape": true,
+        "return-type": "json",
+        "max-length": 40,
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl stop",
+        "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "exec": "~/.config/waybar/scripts/mediaplayer.py 2> /dev/null", // Script in resources/custom_modules folder
+    },
+
+    "custom/microphone": {
+        "format": "{}",
+        "interval": "once",
+        "exec": "[[ \"$(wpctl get-volume @DEFAULT_SOURCE@)\" == *\"MUTED\"* ]] && echo  ",
+        "signal": 10,
+    },
+
+    "custom/notifications": {
+        "format": "{}",
+        "interval": "once",
+        "exec": "[ \"$(dunstctl is-paused)\" == \"true\" ] && echo ",
+        "signal": 9,
+    },
+
+    "custom/pacman": {
+        "format": "{}",
+        "interval": 3600,                     // every hour
+        "exec": "yay -Qu | grep -Fcv \"[ignored]\" | sed \"s/^/  /;s/^  0$//g\"",
+        "on-click": "kitty -e yay Syu; pkill -SIGRTMIN+8 waybar", // update system
+        "signal": 8,
+    },
+
+    "custom/mail": {
+        "format": "{}",
+        "interval": "once",
+        "exec": "num=\"$(find \"${XDG_DATA_HOME:-$HOME/.local/share}\"/mail/*/Inbox/new -type f | wc -l 2>/dev/null)\"; [ $num != 0 ] && echo  $num",
+        "signal": 7,
+    },
+
+    "battery": {
+        "interval": 10,
+        "states": {
+            "warning": 15,
+            "critical": 5 
+        },
+        // Connected to AC
+        "format": "  {icon}   {capacity}%", // Icon: bolt
+        // Not connected to AC
+        "format-discharging": "{icon}   {capacity}%",
+        "format-icons": [
+            "", // Icon: battery-full
+            "", // Icon: battery-three-quarters
+            "", // Icon: battery-half
+            "", // Icon: battery-quarter
+            ""  // Icon: battery-empty
+        ],
+        "tooltip": true
+    },
+
+    "bluetooth": {
+        "format-off": "",
+        "format-connected": "",
+        "format-on": "",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", ""]
+    },
+
+    "clock#time": {
+        "format": "{:%I:%M}",
+        "tooltip": false
+    },
+
+    "clock#date": {
+      "format": "  {:%a %b %e}", // Icon: calendar-alt
+      "tooltip-format": "{:%e %B %Y}"
+    },
+
+    "network": {
+        "interval": 5,
+        "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
+        "format-ethernet": "  {ipaddr}/{cidr}", // Icon: ethernet
+        "format-disconnected": "⚠  Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}"
+    },
+
+    "wlr/workspaces": {
+        "all-outputs": true,
+        "disable-scroll": true,
+        "format": "{icon}",
+        "sort-by-number": true,
+        "format-icons": {
+          "9": " ﴬ",
+          "10": "",
+        },
+    },
+
+    "pulseaudio": {
+        //"scroll-step": 1,
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-muted": " Muted",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+    },
+
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    }
+
+}
