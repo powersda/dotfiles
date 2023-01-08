@@ -19,5 +19,5 @@ export BEMENU_OPTS="-i -p '' -H 30 --fn 'Ubuntu Nerd Font' --tb '$bgcolour' --tf
 
 # If using tty1, start X11
 if [[ "$(tty)" == "/dev/tty1" ]]; then
-    Hyprland 
+    exec Hyprland 
 fi

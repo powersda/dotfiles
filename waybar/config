@@ -28,6 +28,7 @@
     ],
 
     "modules-right": [
+        "tray",
         "custom/notifications",
         "custom/mail",
         "custom/pacman",
@@ -40,7 +41,6 @@
         "battery",
         "clock#date",
         "clock#time",
-        "tray",
     ],
 
 
@@ -171,8 +171,8 @@
         "format-muted": " Muted",
         "format-icons": {
             "headphones": "",
-            "handsfree": "",
-            "headset": "",
+            "handsfree": "",
+            "headset": "",
             "phone": "",
             "portable": "",
             "car": "",

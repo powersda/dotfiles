@@ -5,12 +5,14 @@
 alias mutt="neomutt && pkill -sIGRTMIN+7 waybar"
 alias mbsync="mbsync -c ~/.config/neomutt/mbsyncrc"
 alias spt="pgrep spotifyd &> /dev/null || spotifyd && spt"
-alias clock="tty-clock -ct"
+alias clock="tty-clock -ctC 7"
+alias brave="brave --profile-directory='Default'"
+alias bravehome="brave --profile-directory='Profile 3'"
+alias ls='ls --color=auto'
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
 # Update titlebar
