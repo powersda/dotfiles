@@ -13,7 +13,7 @@ Software I'm currently using:
 * Visualizer: cava
 * Media: mpv
 * Notifications: dunst
-* Images: sxiv
+* Images: imv 
 * Editor: nvim
 * Fetch: neofetch
 * Mail: neomutt, mbsync, msmtp, goimapnotify, mailnotify
