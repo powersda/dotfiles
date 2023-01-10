@@ -30,7 +30,6 @@
     "modules-right": [
         "tray",
         "custom/notifications",
-        "custom/mail",
         "custom/pacman",
         "bluetooth",
         "custom/vpn",
@@ -159,7 +158,8 @@
         "sort-by-number": true,
         "on-click": "activate",
         "format-icons": {
-          "9": " ﴬ",
+          "8": "",
+          "9": "",
           "10": "",
         },
     },

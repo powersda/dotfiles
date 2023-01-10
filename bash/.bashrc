@@ -2,12 +2,11 @@
 # ~/.bashrc
 #
 
-alias mutt="neomutt && pkill -sIGRTMIN+7 waybar"
-alias mbsync="mbsync -c ~/.config/neomutt/mbsyncrc"
+# alias mutt="neomutt && pkill -sIGRTMIN+7 waybar"
+# alias mbsync="mbsync -c ~/.config/neomutt/mbsyncrc"
 alias spt="pgrep spotifyd &> /dev/null || spotifyd && spt"
 alias clock="tty-clock -ctC 7"
 alias ls='ls --color=auto'
-alias imv='imv .'
 
 
 # If not running interactively, don't do anything
