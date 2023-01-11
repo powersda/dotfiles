@@ -86,7 +86,7 @@
 
     "custom/pacman": {
         "format": "{}",
-        "interval": 3600,                     // every hour
+        "interval": 900,
         "exec": "yay -Qu | grep -Fcv \"[ignored]\" | sed \"s/^/  /;s/^  0$//g\"",
         "on-click": "kitty -e yay Syu; pkill -SIGRTMIN+8 waybar", // update system
         "signal": 8,

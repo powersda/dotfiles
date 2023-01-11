@@ -14,6 +14,7 @@ export WGETRC=~/.config/wget/.wgetrc
 export LESSHISTFILE=-
 export EDITOR=nvim
 export BEMENU_OPTS="-i -p '' -H 30 --fn 'Ubuntu Nerd Font' --tb '$bgcolour' --tf '$fgcolour' --fb '$bgcolour' --ff '$fgcolour' --hf '$fgcolour' --hb '$hlcolour' --nb '$bgcolour' --nf '$fgcolour' --ab '$bgcolour' --af '$fgcolour'"
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
