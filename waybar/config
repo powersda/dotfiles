@@ -1,5 +1,5 @@
 
-// Waybar configuration
+
 // =============================================================================
 
 {
@@ -30,8 +30,8 @@
     "modules-right": [
         "tray",
         "custom/notifications",
-        "custom/pacman",
         "bluetooth",
+        "custom/pacman",
         "custom/vpn",
         "network",
         "backlight",
@@ -86,9 +86,12 @@
 
     "custom/pacman": {
         "format": "{}",
-        "interval": 900,
-        "exec": "yay -Qu | grep -Fcv \"[ignored]\" | sed \"s/^/  /;s/^  0$//g\"",
-        "on-click": "kitty -e yay Syu; pkill -SIGRTMIN+8 waybar", // update system
+        "interval": 1800,
+        "exec-if": "[ ! -f \"/var/lib/pacman/db.lck\" ]",
+        "exec": "yay -Qu | grep -Fcv \"[ignored]\" | sed \"s/^/  /;s/^  0$//g\" || echo Error!",
+        /* "exec": "yay -Qu | grep -Fcv \"[ignored]\" | sed \"s/^/  /;s/^  0$/`date +%X`/g\"", */
+        /* "exec": "echo \"Last checked: \"$(date +%X)\"\"", */
+        "on-click": "kitty -e yay -Syu",
         "signal": 8,
     },
 
