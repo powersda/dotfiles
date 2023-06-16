@@ -41,6 +41,7 @@ def on_metadata(player, metadata, manager):
     else:
         track_info = player.get_title()
 
+
     if player.props.status != 'Playing' and track_info:
         track_info = ' ' + track_info
     write_output(track_info, player)
@@ -65,6 +66,8 @@ def init_player(manager, name):
     player.connect('playback-status', on_play, manager)
     player.connect('metadata', on_metadata, manager)
     manager.manage_player(player)
+    if player.get_artist() == None:
+        return
     on_metadata(player, player.props.metadata, manager)
 
 
@@ -118,6 +121,7 @@ def main():
                          .format(player=player.name)
                          )
             continue
+
 
         init_player(manager, player)
 

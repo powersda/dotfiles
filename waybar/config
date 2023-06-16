@@ -86,11 +86,9 @@
 
     "custom/pacman": {
         "format": "{}",
-        "interval": 1800,
+        "interval": "once",
         "exec-if": "[ ! -f \"/var/lib/pacman/db.lck\" ]",
-        "exec": "yay -Qu | grep -Fcv \"[ignored]\" | sed \"s/^/  /;s/^  0$//g\" || echo Error!",
-        /* "exec": "yay -Qu | grep -Fcv \"[ignored]\" | sed \"s/^/  /;s/^  0$/`date +%X`/g\"", */
-        /* "exec": "echo \"Last checked: \"$(date +%X)\"\"", */
+        "exec": "yay -Qu | grep -Fcv \"[ignored]\" | sed \"s/^/  /;s/^  0$//g\"",
         "on-click": "kitty -e yay -Syu",
         "signal": 8,
     },
