@@ -9,12 +9,6 @@ Software I'm currently using:
 * Window Manager: hyprland
 * Terminal: foot
 * Browser: firefox
-* Music: spotify-player
-* Visualizer: cava
-* Media: mpv
-* Notifications: swaync
-* Images: imv 
-* Editor: nvim
-* Mail: thunderbid 
-* PDFs: zathura
 * Fonts: Hack 
+* Notifications: swaync
+* Editor: nvim
