@@ -1,42 +1,60 @@
-
-
-// =============================================================================
-
-{
+[{
     // -------------------------------------------------------------------------
-    // Global configuration
+    // Bottom Bar
     // -------------------------------------------------------------------------
 
     "layer": "top",
-
-    "position": "top",
-
-    /* "output": ["eDP-1", "HDMI-A-1"], */
-    /* "output": "eDP-1", */
-    /* "output": ["HDMI-A-1", "eDP-1"], */
-
-    // If height property would be not present, it'd be calculated dynamically
-    "height": 30,
-
-    "modules-left": [
-        "wlr/workspaces",
-        "hyprland/window",
-    ],
+    "position": "bottom",
+    "exclusive": false,
+    "height": 18,
+    "reload_style_on_change": true,
 
     "modules-center": [
-        "custom/media"
+        "cava"
+    ],
+
+    "cava": {
+        "framerate": 60,
+        "autosens": 1,
+        "bars": 200,
+        "stereo": true,
+        "method": "pipewire",
+        "source": "auto",
+        "bar_delimiter": 0,
+        "sleep_timer": 1,
+        "input_delay": 2,
+        "hide_on_silence": true,
+        "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ]
+    },
+},
+{
+    // -------------------------------------------------------------------------
+    // Top Bar
+    // -------------------------------------------------------------------------
+
+    "layer": "top",
+    "position": "top",
+    "margin": "0, 3, 0, 3",
+    "height": 30,
+    "exclusive": false,
+    "reload_style_on_change": true,
+
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window",
     ],
 
     "modules-right": [
         "tray",
-        "custom/notifications",
+        "systemd-failed-units",
         "bluetooth",
-        "custom/pacman",
         "custom/vpn",
+        "custom/notification",
         "network",
         "backlight",
         "custom/microphone", 
-        "pulseaudio",
+        "wireplumber",
+        // "pulseaudio",
         "battery",
         "clock#date",
         "clock#time",
@@ -47,8 +65,43 @@
     // Modules
     // -------------------------------------------------------------------------
 
+    "hyprland/workspaces": {
+        "all-outputs": false,
+        "format": "{icon}{windows}",
+        "sort-by-number": true,
+        "on-click": "activate",
+        "window-rewrite-default": " ",
+        "window-rewrite": {
+            "class<firefox>": " ",
+            "class<com.mitchellh.ghostty|foot>": " ",
+            "class<discord>": " ",
+            "class<foot> title<.*NVIM>": " ",
+            "class<foot> title<Spotify>": " ",
+            "class<thunderbird>": " ",
+            "class<obsidian>": " "
+        }
+    },
+
     "hyprland/window": {
-        "separate-outputs": true
+        "separate-outputs": true,
+    },
+
+    "tray": {
+        "icon-size": 21,
+    },
+
+    "systemd-failed-units": {
+        "hide-on-ok": true, // Do not hide if there is zero failed units.
+        "format": "✗ {nr_failed}",
+        "format-ok": "✓",
+        "system": true, // Monitor failed systemwide units.
+        "user": true// Ignore failed user units.
+    },
+
+    "bluetooth": {
+        "format-off": "",
+        "format-connected": "",
+        "format-on": "",
     },
 
     "custom/vpn": {
@@ -58,16 +111,35 @@
         "signal": 11,
     },
 
-    "custom/media": {
-        "format": "  {}",
-        "escape": true,
+    "custom/notification": {
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "",
+            "none": "",
+            "dnd-notification": "",
+            "dnd-none": "",
+            "inhibited-notification": "",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "",
+            "dnd-inhibited-none": ""
+        },
         "return-type": "json",
-        "max-length": 40,
-        "on-click": "playerctl -p spotifyd play-pause",
-        "on-click-right": "playerctl -p spotifyd stop",
-        "on-scroll-up": "playerctl -p spotifyd next",
-        "on-scroll-down": "playerctl -p spotifyd previous",
-        "exec": "~/.config/waybar/scripts/mediaplayer.py --player spotifyd 2> /dev/null", // Script in resources/custom_modules folder
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "escape": true
+    },
+
+    "network": {
+        "interval": 5,
+        "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
+        "format-ethernet": "󰈀  {ipaddr}/{cidr}", // Icon: ethernet
+        "format-disconnected": "⚠  Disconnected",
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰛩","󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"]
     },
 
     "custom/microphone": {
@@ -77,99 +149,11 @@
         "signal": 10,
     },
 
-    "custom/notifications": {
-        "format": "{}",
-        "interval": "once",
-        "exec": "[ \"$(dunstctl is-paused)\" == \"true\" ] && echo ",
-        "signal": 9,
-    },
-
-    "custom/pacman": {
-        "format": "{}",
-        "interval": "once",
-        "exec-if": "[ ! -f \"/var/lib/pacman/db.lck\" ]",
-        "exec": "yay -Qu | grep -Fcv \"[ignored]\" | sed \"s/^/  /;s/^  0$//g\"",
-        "on-click": "kitty -e yay -Syu",
-        "signal": 8,
-    },
-
-    "custom/mail": {
-        "format": "{}",
-        "interval": "once",
-        "exec": "num=\"$(find \"${XDG_DATA_HOME:-$HOME/.local/share}\"/mail/*/Inbox/new -type f | wc -l 2>/dev/null)\"; [ $num != 0 ] && echo  $num",
-        "signal": 7,
-    },
-
-    "battery": {
-        "interval": 10,
-        "states": {
-            "warning": 15,
-            "critical": 5 
-        },
-        // Connected to AC
-        "format": "  {icon}   {capacity}%", // Icon: bolt
-        // Not connected to AC
-        "format-discharging": "{icon}   {capacity}%",
-        "format-icons": [
-            "", // Icon: battery-full
-            "", // Icon: battery-three-quarters
-            "", // Icon: battery-half
-            "", // Icon: battery-quarter
-            ""  // Icon: battery-empty
-        ],
-        "tooltip": true
-    },
-
-    "bluetooth": {
-        "format-off": "",
-        "format-connected": "",
-        "format-on": "",
-        "tooltip-format": "{controller_alias}\t{controller_address}",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
-    },
-
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", ""]
-    },
-
-    "clock#time": {
-        "format": "{:%I:%M}",
-        "tooltip": false
-    },
-
-    "clock#date": {
-      "format": "  {:%a %b %e}", // Icon: calendar-alt
-      "tooltip-format": "{:%e %B %Y}"
-    },
-
-    "network": {
-        "interval": 5,
-        "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
-        "format-ethernet": "  {ipaddr}/{cidr}", // Icon: ethernet
-        "format-disconnected": "⚠  Disconnected",
-        "tooltip-format": "{ifname}: {ipaddr}"
-    },
-
-    "wlr/workspaces": {
-        "all-outputs": false,
-        "format": "{icon}",
-        "sort-by-number": true,
-        "on-click": "activate",
-        "format-icons": {
-          "8": "",
-          "9": "",
-          "10": "",
-        },
-    },
-
-    "pulseaudio": {
-        //"scroll-step": 1,
-        "format": "{icon} {volume}%",
+    "wireplumber": {
+        "max-volume": 100.0,
+        "format": "{icon}  {volume}%",
         "format-bluetooth": "{icon} {volume}%",
-        "format-muted": " Muted",
+        "format-muted": "  Muted",
         "format-icons": {
             "headphones": "",
             "handsfree": "",
@@ -177,13 +161,34 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", ""]
+            "default": ["", "", ""]
         },
     },
 
-    "tray": {
-        "icon-size": 21,
-        "spacing": 10
-    }
+    "battery": {
+        "interval": 60,
+        "states": {
+            "warning": 15,
+            "critical": 5 
+        },
+        // Connected to AC
+        "format": " {icon} {capacity}%", // Icon: bolt
+        // Not connected to AC
+        "format-discharging": "{icon} {capacity}%",
+        "format-icons": [
+            "", // Icon: battery-full
+            "", // Icon: battery-three-quarters
+            "", // Icon: battery-half
+            "", // Icon: battery-quarter
+            ""  // Icon: battery-empty
+        ],
+    },
 
-}
+    "clock#time": {
+        "format": "{:%I:%M}",
+    },
+
+    "clock#date": {
+        "format": "  {:%a %b %e}", // Icon: calendar-alt
+    },
+}]

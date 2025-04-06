@@ -6,34 +6,38 @@
  * Base styles
  * -------------------------------------------------------------------------- */
 
+ @import "/home/pwrhs/.cache/wal/colors-waybar.css";
+
 /* Reset all styles */
 * {
     border: none;
     border-radius: 0;
     min-height: 0;
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 
 /* The whole bar */
 #waybar {
-    background: #282828;
-    color: #DCE3ED;
+    background: rgba(40,40,40, 0);
+    /* color: #DCE3ED; */
+    color: white; 
+    text-shadow: 1px 1px 2px black;
+    font-weight: 500;
     font-family: Ubuntu Nerd Font;
     font-size: 15px;
 }
 
 /* Each module */
-#custom-pacman,
-#custom-media,
-#custom-mail,
-#custom-notifications,
+#custom-notification,
 #battery,
 #clock,
 #network,
 #wireplumber,
 #backlight,
 #bluetooth,
+#workspaces,
+#window,
 #tray {
     padding-left: 7px;
     padding-right: 7px;
@@ -59,18 +63,19 @@
 }
 
 #battery.warning.discharging {
-    animation-name: blink-warning;
-    animation-duration: 5s;
+    animation: blink 2s linear infinite;
 }
 
 #battery.critical.discharging {
-    animation-name: blink-critical;
-    animation-duration: 5s;
+    animation: blink 1s linear infinite;
 }
 
-#clock.time {
-    font-weight: bold;
+@keyframes blink {
+    75% { opacity: 1 }
+    87% { opacity: 0.6 }
+    100% { opacity: 1 }
 }
+
 #network {
     /* No styles */
 }
@@ -79,29 +84,49 @@
     color: orange;
 }
 
-#tray {
-    /* No styles */
-}
-
 #workspaces button {
-    border-top: 2px solid transparent;
-    /* To compensate for the top border and still have vertical centering */
-    padding-bottom: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: #888888;
+    border-bottom: 2px solid transparent;
+    border-radius: 7px;
+    padding: 2px 8px 1px 8px;
+    color: #CCCCCC;
+    text-shadow: 1px 1px 1px black;
+    margin-top: 3px;
+    margin-right: 2px;
 }
 
-#workspaces button.active{
-    border-color: #4c7899;
+#workspaces button:hover {
     color: white;
-    background-color: #285577;
+    background: rgba(40, 40, 40, 0);
+    background-color: @color10;
+    border-color: @color10;
+}
+
+#workspaces button.visible{
+    border-color: @color10;
+    color: white;
+    /* Creates a raised effect */
+    margin-bottom: 3px;
+    background-color: @color2;
+    box-shadow: 1px 1px 2px black;
 }
 
 #workspaces button.urgent {
-    border-color: #c9545d;
-    color: #c9545d;
+    border-color: @color14; 
+    background-color: @color6; 
 }
-#window {
-    padding-left: 10px;
+
+#cava { 
+    /* text-shadow: 1px 1px 3px black; */
+    animation: gradient 24s infinite;
+    font-family: Hack Nerd Font;
+}
+
+@keyframes gradient {
+  0% { color: @color9; }
+  16% { color: @color10; }
+  33% { color: @color11; }
+  49% { color: @color12; }
+  66% { color: @color13; }
+  82% { color: @color14; }
+  100% { color: @color9; }
 }

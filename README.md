@@ -7,15 +7,14 @@ Software I'm currently using:
 * Distro: Arch (btw)
 * Shell: bash
 * Window Manager: hyprland
-* Terminal: kitty
-* Browser: brave
-* Music: spotifyd + spotify-tui, cmus
+* Terminal: foot
+* Browser: firefox
+* Music: spotify-player
 * Visualizer: cava
 * Media: mpv
-* Notifications: dunst
+* Notifications: swaync
 * Images: imv 
 * Editor: nvim
-* Fetch: neofetch
-* Mail: neomutt, mbsync, msmtp, goimapnotify, mailnotify
+* Mail: thunderbid 
 * PDFs: zathura
-* Fonts: Hack Nerd Font (Ligature patched), Ubuntu Nerd Font
+* Fonts: Hack 

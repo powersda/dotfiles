@@ -27,7 +27,7 @@ $line_break\
 $character
 """
 
-# add_newline = false
+add_newline = false
 
 [line_break]
 disabled = true
