@@ -48,7 +48,6 @@
         "tray",
         "systemd-failed-units",
         "bluetooth",
-        "custom/vpn",
         "custom/notification",
         "network",
         "backlight",
@@ -78,7 +77,8 @@
             "class<foot> title<.*NVIM>": " ",
             "class<foot> title<Spotify>": " ",
             "class<thunderbird>": " ",
-            "class<obsidian>": " "
+            "class<obsidian>": " ",
+            "class<virt-manager>": " 󰍹"
         }
     },
 
@@ -102,13 +102,6 @@
         "format-off": "",
         "format-connected": "",
         "format-on": "",
-    },
-
-    "custom/vpn": {
-        "format": "{}",
-        "interval": "once",
-        "exec": "[ -h \"/sys/class/net/tun0\" ] && echo ",
-        "signal": 11,
     },
 
     "custom/notification": {
