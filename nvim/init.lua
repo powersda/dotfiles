@@ -186,7 +186,7 @@ require('lazy').setup({
   { 'echasnovski/mini.ai', version = '*', opts = {} },
   { 'catgoose/nvim-colorizer.lua', event = "BufReadPre", opts = {} },
   { 'lewis6991/gitsigns.nvim', opts = {} },
-  { 'nvim-jkhlualine/lualine.nvim', opts = {} },
+  { 'nvim-lualine/lualine.nvim', opts = {} },
 
   -- Colourschemes
   { "folke/tokyonight.nvim", priority = 1000, opts = { transparent = true } },
