@@ -3,7 +3,6 @@
 #
 #
 export EDITOR=nvim
-export XDG_DATA_HOME=/home/pwrhs/.local/share
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
