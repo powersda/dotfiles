@@ -3,9 +3,10 @@
 #
 #
 export EDITOR=nvim
+export XDG_DATA_HOME=/home/pwrhs/.local/share
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 if [[ "$(tty)" == "/dev/tty1" ]]; then
-    start-hyprland
+    exec niri-session -l
 fi

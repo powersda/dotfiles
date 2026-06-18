@@ -18,18 +18,18 @@ q = quit
 y = exec echo working!
 
 # Image navigation
-<Left> = prev
+p = prev
 <bracketleft> = prev
-<Right> = next
+n = next
 <bracketright> = next
 gg = goto 1
 <Shift+G> = goto -1
 
 # Panning
-j = pan 0 -50
-k = pan 0 50
-h = pan 50 0
-l = pan -50 0
+k = pan 0 -50
+j = pan 0 50
+l = pan 50 0
+h = pan -50 0
 
 # Zooming
 <Up> = zoom 1
@@ -40,18 +40,18 @@ i = zoom 1
 o = zoom -1
 
 # Rotate Clockwise by 90 degrees
-<Ctrl+r> = rotate by 90
+r = rotate by 90
 
 # Other commands
 x = close
 f = fullscreen
 d = overlay
-p = exec echo $imv_current_file
+#p = exec echo $imv_current_file
 c = center
 s = scaling next
 <Shift+S> = upscaling next
 a = zoom actual
-r = reset
+#r = reset
 
 # Gif playback
 <period> = next_frame

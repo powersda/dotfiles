@@ -1,0 +1,313 @@
+  /////////////////////
+ //     GENERAL     //
+/////////////////////
+
+include "noctalia.kdl"
+spawn-at-startup "noctalia"
+prefer-no-csd
+screenshot-path "~/pictures/screenshots/screenshot_%Y-%m-%d_%H:%M:%S.png"
+hotkey-overlay { skip-at-startup; }
+
+  /////////////////////
+ //      INPUTS     //
+/////////////////////
+
+input {
+    keyboard {
+        xkb { options "altwin:prtsc_rwin"; }
+        // numlock // Enable numlock on startup, omitting this setting disables it.
+        repeat-delay 300
+    }
+
+    touchpad {
+        tap                     // tap-to-click
+        dwt                     // disable while typing
+        drag false              // tap and drag
+        natural-scroll
+	scroll-factor 0.7
+        accel-profile "flat"
+	accel-speed 0.7
+    }
+
+    mouse {
+        accel-speed 0.4
+        accel-profile "flat"
+    }
+
+    trackpoint {
+        accel-speed 0.5
+        accel-profile "adaptive"
+    }
+
+    warp-mouse-to-focus
+    focus-follows-mouse max-scroll-amount="0%"
+    disable-power-key-handling      // don't let niri control power button
+    workspace-auto-back-and-forth
+}
+
+cursor {
+    xcursor-theme "Dracula-cursors"
+    hide-when-typing
+    hide-after-inactive-ms 30000
+}
+
+  /////////////////////
+ //     OUTPUTS     //
+/////////////////////
+
+output "eDP-1" {
+    scale 1
+    hot-corners { off; }
+}
+
+output "DP-1" {
+    // mode "3440x1440@85.00
+    scale 1
+    position x=0 y=0    // ensures external monitor is to the left
+    transform "normal"
+    variable-refresh-rate on-demand=true
+    focus-at-startup
+}
+
+output "HDMI-A-!" {
+    // mode "3440x1440@85.00
+    scale 1
+    position x=0 y=0    // ensures external monitor is to the left
+    transform "normal"
+    variable-refresh-rate on-demand=true
+    focus-at-startup
+}
+
+  /////////////////////
+ //      STYLE      //
+/////////////////////
+
+layout {
+    gaps 16
+    center-focused-column "never"
+    always-center-single-column
+    background-color "transparent"
+    empty-workspace-above-first
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 0.75
+    }
+
+    focus-ring {
+        width 2
+    }
+
+    shadow {
+        on
+        softness 10
+        spread 2
+        offset x=6 y=6
+        draw-behind-window true
+    }
+
+    tab-indicator { 
+        place-within-column
+        position "left"
+    }
+
+    struts {
+        left 30
+        right 30
+        top 30
+        bottom 30
+    }
+}
+
+blur {
+    passes 1
+    offset 5
+    noise 0.0117
+    saturation 0.1696
+}
+
+window-rule {
+    geometry-corner-radius 10 // global corner radius
+    clip-to-geometry true
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+debug { // Allows notification actions and window activation from Noctalia
+    honor-xdg-activation-with-invalid-serial
+}
+
+  /////////////////////
+ //      RULES      //
+/////////////////////
+
+layer-rule {
+    match namespace="^noctalia-(notification|dock|panel|attached-panel|osd)$"
+    background-effect {
+        xray false
+    }
+}
+layer-rule {
+    match namespace="^noctalia-(bar-[^\"]+)$"
+    background-effect {
+        xray false
+        blur false
+    }
+}
+
+layer-rule {
+    match namespace="^noctalia-backdrop"
+    place-within-backdrop true
+}
+
+// Floating pop-ups
+window-rule {
+    match app-id=r#"zen$"# title="^Picture-in-Picture$"
+    match app-id=r#"zen$"# title=r#"^Extension\:.*$"#
+    match app-id="dev.noctalia.Noctalia.Settings"
+    match app-id="nwg-look"
+    match app-id="imv"
+    default-window-height { proportion 0.75; }
+    open-floating true
+}
+
+  /////////////////////
+ //      BINDS      //
+/////////////////////
+
+binds {
+    // Media Keys
+    XF86AudioMute               allow-when-locked=true allow-inhibiting=false           { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioLowerVolume        allow-when-locked=true allow-inhibiting=false           { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
+    XF86AudioRaiseVolume        allow-when-locked=true allow-inhibiting=false           { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0"; }
+    XF86AudioMicMute            allow-when-locked=true allow-inhibiting=false           { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86NotificationCenter      allow-when-locked=true allow-inhibiting=false           { spawn-sh "noctalia msg media toggle"; }
+    XF86PickupPhone             allow-when-locked=true allow-inhibiting=false           { spawn-sh "noctalia msg media stop"; }
+    XF86HangupPhone             allow-when-locked=true allow-inhibiting=false           { spawn-sh "noctalia msg media previous"; }
+    XF86Favorites               allow-when-locked=true allow-inhibiting=false           { spawn-sh "noctalia msg media next"; }
+    XF86AudioPlay               allow-when-locked=true allow-inhibiting=false           { spawn-sh "noctalia msg media toggle"; }
+    XF86AudioStop               allow-when-locked=true allow-inhibiting=false           { spawn-sh "noctalia msg media stop"; }
+    XF86AudioPrev               allow-when-locked=true allow-inhibiting=false           { spawn-sh "noctalia msg media previous"; }
+    XF86AudioNext               allow-when-locked=true allow-inhibiting=false           { spawn-sh "noctalia msg media next"; }
+    XF86MonBrightnessUp         allow-when-locked=true allow-inhibiting=false           { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown       allow-when-locked=true allow-inhibiting=false           { spawn-sh "noctalia msg brightness-down"; }
+
+    // Niri
+    Mod+Shift+Ctrl+Q            hotkey-overlay-title="Exit Niri"                        { quit skip-confirmation=true; }
+    Mod+P repeat=false          hotkey-overlay-title="Toggle workspace overview"        { toggle-overview; }
+    Mod+Shift+P                 hotkey-overlay-title="Toggle hotkey overlay"            { show-hotkey-overlay; }
+    Mod+S                       hotkey-overlay-title="Screenshot entire screen"         { screenshot-screen; }
+    Mod+Shift+S                 hotkey-overlay-title="Screenshot selection"             { screenshot; }
+    Mod+Shift+Ctrl+S            hotkey-overlay-title="Screenshot focused window"        { screenshot-window; }
+    Mod+Escape                  allow-inhibiting=false                                  { toggle-keyboard-shortcuts-inhibit; }
+    Mod+Return                  hotkey-overlay-title="Spawn a terminal"                 { spawn "foot"; }
+    // Mod+Shift+P              hotkey-overlay-title="Turn off screens"                     { power-off-monitors; }
+    Mod+V                       hotkey-overlay-title="Toggle window floating"           { toggle-window-floating; }
+    Mod+Shift+V                 hotkey-overlay-title="Switch between floating & tiling" { switch-focus-between-floating-and-tiling; }
+    Mod+F                       hotkey-overlay-title="Expand column to available width" { expand-column-to-available-width; }
+    Mod+Shift+F                 hotkey-overlay-title="Expand column to screen width"    { maximize-column; }
+    Mod+Shift+Ctrl+F            hotkey-overlay-title="Fullscreen window"                { fullscreen-window; }
+    // Mod+M                    hotkey-overlay-title=null                                   { maximize-window-to-edges; }
+    Mod+C                       hotkey-overlay-title="Center column on screen"          { center-column; }
+    Mod+Shift+C                 hotkey-overlay-title="Center visible columns on screen" { center-visible-columns; }
+    Mod+T                       hotkey-overlay-title="Toggle tab display"                   { toggle-column-tabbed-display; }
+
+    // Noctalia
+    Mod+D                       hotkey-overlay-title="Spawn application launcher"       { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+B                       hotkey-overlay-title="Toggle top bar"                   { spawn-sh "noctalia msg bar-toggle"; }
+    Mod+Shift+B                 hotkey-overlay-title="Toggle bottom bar"                { spawn-sh "noctalia msg bar-toggle Visualizer"; }
+    Mod+Semicolon               hotkey-overlay-title="Toggle session panel"             { spawn-sh "noctalia msg panel-toggle session"; }
+    Mod+Shift+Semicolon         hotkey-overlay-title="Toggle Noctalia control center"   { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+Shift+Ctrl+Semicolon    hotkey-overlay-title="Toggle Noctalia settings"         { spawn-sh "noctalia msg settings-toggle"; }
+    Mod+M                       hotkey-overlay-title="Toggle media overlay"             { spawn-sh "noctalia msg panel-toggle control-center media"; }
+    Mod+W                       hotkey-overlay-title="Toggle wallpaper selector"        { spawn-sh "noctalia msg panel-toggle wallpaper"; }
+    Mod+N                       hotkey-overlay-title="Toggle notification panel"        { spawn-sh "noctalia msg panel-toggle control-center notifications"; }
+    Mod+Shift+N                 hotkey-overlay-title="Clear active notications"         { spawn-sh "noctalia msg notification-clear-active"; }
+    Mod+Shift+Ctrl+N            hotkey-overlay-title="Toggle notification DnD"          { spawn-sh "noctalia msg notification-dnd-toggle"; }
+
+    // Windows+Columns
+    Mod+Shift+Q                 hotkey-overlay-title=null repeat=false                  { close-window; }
+    Mod+H                       hotkey-overlay-title=null                               { focus-column-or-monitor-left; }
+    Mod+L                       hotkey-overlay-title=null                               { focus-column-or-monitor-right; }
+    Mod+J                       hotkey-overlay-title=null                               { focus-window-or-workspace-down; }
+    Mod+K                       hotkey-overlay-title=null                               { focus-window-or-workspace-up; }
+    Mod+Shift+Ctrl+H            hotkey-overlay-title=null                               { consume-or-expel-window-left; } // Swapped Shift and Shift+Ctrl due to muscle memory
+    Mod+Shift+Ctrl+L            hotkey-overlay-title=null                               { consume-or-expel-window-right; }
+    Mod+Shift+Ctrl+J            hotkey-overlay-title=null                               { move-window-down-or-to-workspace-down; }
+    Mod+Shift+Ctrl+K            hotkey-overlay-title=null                               { move-window-up-or-to-workspace-up; }
+    Mod+Shift+H                 hotkey-overlay-title=null                               { move-column-left-or-to-monitor-left; }
+    Mod+Shift+L                 hotkey-overlay-title=null                               { move-column-right-or-to-monitor-right; }
+    Mod+Shift+J                 hotkey-overlay-title=null                               { move-column-to-workspace-down; }
+    Mod+Shift+K                 hotkey-overlay-title=null                               { move-column-to-workspace-up; }
+    Mod+Shift+Alt+J             hotkey-overlay-title=null                               { move-workspace-down;  }
+    Mod+Shift+Alt+K             hotkey-overlay-title=null                               { move-workspace-up; }
+    // Mod+Shift+Ctrl+K            hotkey-overlay-title=null                               { focus-column-first; }
+    // Mod+Shift+Ctrl+J            hotkey-overlay-title=null                               { focus-column-last; }
+
+    // Workspaces
+    Mod+Tab                     hotkey-overlay-title=null                               { focus-workspace-previous; }
+    Mod+1                       hotkey-overlay-title=null                               { focus-workspace 1; }
+    Mod+2                       hotkey-overlay-title=null                               { focus-workspace 2; }
+    Mod+3                       hotkey-overlay-title=null                               { focus-workspace 3; }
+    Mod+4                       hotkey-overlay-title=null                               { focus-workspace 4; }
+    Mod+5                       hotkey-overlay-title=null                               { focus-workspace 5; }
+    Mod+6                       hotkey-overlay-title=null                               { focus-workspace 6; }
+    Mod+7                       hotkey-overlay-title=null                               { focus-workspace 7; }
+    Mod+8                       hotkey-overlay-title=null                               { focus-workspace 8; }
+    Mod+9                       hotkey-overlay-title=null                               { focus-workspace 9; }
+    Mod+Shift+1                 hotkey-overlay-title=null                               { move-window-to-workspace 1; }
+    Mod+Shift+2                 hotkey-overlay-title=null                               { move-window-to-workspace 2; }
+    Mod+Shift+3                 hotkey-overlay-title=null                               { move-window-to-workspace 3; }
+    Mod+Shift+4                 hotkey-overlay-title=null                               { move-window-to-workspace 4; }
+    Mod+Shift+5                 hotkey-overlay-title=null                               { move-window-to-workspace 5; }
+    Mod+Shift+6                 hotkey-overlay-title=null                               { move-window-to-workspace 6; }
+    Mod+Shift+7                 hotkey-overlay-title=null                               { move-window-to-workspace 7; }
+    Mod+Shift+8                 hotkey-overlay-title=null                               { move-window-to-workspace 8; }
+    Mod+Shift+9                 hotkey-overlay-title=null                               { move-window-to-workspace 9; }
+    Mod+Shift+Ctrl+1            hotkey-overlay-title=null                               { move-column-to-workspace 1; }
+    Mod+Shift+Ctrl+2            hotkey-overlay-title=null                               { move-column-to-workspace 2; }
+    Mod+Shift+Ctrl+3            hotkey-overlay-title=null                               { move-column-to-workspace 3; }
+    Mod+Shift+Ctrl+4            hotkey-overlay-title=null                               { move-column-to-workspace 4; }
+    Mod+Shift+Ctrl+5            hotkey-overlay-title=null                               { move-column-to-workspace 5; }
+    Mod+Shift+Ctrl+6            hotkey-overlay-title=null                               { move-column-to-workspace 6; }
+    Mod+Shift+Ctrl+7            hotkey-overlay-title=null                               { move-column-to-workspace 7; }
+    Mod+Shift+Ctrl+8            hotkey-overlay-title=null                               { move-column-to-workspace 8; }
+    Mod+Shift+Ctrl+9            hotkey-overlay-title=null                               { move-column-to-workspace 9; }
+
+    // Monitors
+    Mod+Comma                   hotkey-overlay-title=null                               { focus-monitor-left; }
+    Mod+Period                  hotkey-overlay-title=null                               { focus-monitor-right; }
+    Mod+Shift+Comma             hotkey-overlay-title=null                               { move-window-to-monitor-left; }
+    Mod+Shift+Period            hotkey-overlay-title=null                               { move-window-to-monitor-right; }
+    Mod+Shift+Ctrl+Comma        hotkey-overlay-title=null                               { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+Period       hotkey-overlay-title=null                               { move-column-to-monitor-right; }
+    Mod+Shift+Alt+Comma         hotkey-overlay-title=null                               { move-workspace-to-monitor-left; }
+    Mod+Shift+Alt+Period        hotkey-overlay-title=null                               { move-workspace-to-monitor-right; }
+
+    // Arrangement
+    // Mod+Ctrl+H                  hotkey-overlay-title=null                               { set-column-width "-10%"; }
+    // Mod+Ctrl+L                  hotkey-overlay-title=null                               { set-column-width "+10%"; }
+    // Mod+Ctrl+J                  hotkey-overlay-title=null                               { set-window-height "-10%"; }
+    // Mod+Ctrl+K                  hotkey-overlay-title=null                               { set-window-height "+10%"; }
+    Mod+Ctrl+H                  hotkey-overlay-title=null                               { switch-preset-column-width-back; }
+    Mod+Ctrl+L                  hotkey-overlay-title=null                               { switch-preset-column-width; }
+    Mod+Ctrl+J                  hotkey-overlay-title=null                               { switch-preset-window-height; }
+    Mod+Ctrl+K                  hotkey-overlay-title=null                               { reset-window-height; }
+
+    // Mouse
+    Mod+WheelScrollDown         cooldown-ms=150                                         { focus-workspace-down; }
+    Mod+WheelScrollUp           cooldown-ms=150                                         { focus-workspace-up; }
+    Mod+Shift+WheelScrollDown   cooldown-ms=150                                         { move-column-to-workspace-down; }
+    Mod+Shift+WheelScrollUp     cooldown-ms=150                                         { move-column-to-workspace-up; }
+}
+
+recent-windows {
+    binds {
+        Alt+Tab         { next-window; }
+        Alt+Shift+Tab   { previous-window; }
+    }
+}
+
