@@ -24,13 +24,13 @@ input {
         dwt                     // disable while typing
         drag false              // tap and drag
         natural-scroll
-	scroll-factor 0.7
+        scroll-factor 0.7
         accel-profile "flat"
-	accel-speed 0.7
+        accel-speed 0.7
     }
 
     mouse {
-        accel-speed 0.4
+        accel-speed 0.6
         accel-profile "flat"
     }
 
@@ -172,6 +172,12 @@ window-rule {
     match app-id="imv"
     default-window-height { proportion 0.75; }
     open-floating true
+}
+
+// Override default float
+window-rule {
+    match app-id=r#"^xfreerdp$"#
+    open-floating false
 }
 
   /////////////////////

@@ -243,13 +243,13 @@ source = "wallpaper"
 directory = "~/pictures/wallpapers"
 
     [wallpaper.default]
-    path = "/home/pwrhs/pictures/wallpapers/i3D4.jpg"
+    path = "/home/pwrhs/pictures/wallpapers/rollingwaves.png"
 
     [wallpaper.last]
-    path = "/home/pwrhs/pictures/wallpapers/i3D4.jpg"
+    path = "/home/pwrhs/pictures/wallpapers/rollingwaves.png"
 
     [wallpaper.monitors.DP-1]
-    path = "/home/pwrhs/pictures/wallpapers/i3D4.jpg"
+    path = "/home/pwrhs/pictures/wallpapers/rollingwaves.png"
 
     [wallpaper.monitors.eDP-1]
     path = "/home/pwrhs/pictures/wallpapers/i3D4.jpg"
