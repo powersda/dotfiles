@@ -120,10 +120,7 @@ require("mini.ai").setup()
 require("nvim-surround").setup()
 require("mini.pick").setup()
 require("mini.pairs").setup()
-require("oil").setup({
-      columns = { "size", "mtime", "icon" },
-      view_options = { show_hidden = true }
-})
+require("oil").setup({ columns = { "size", "mtime", "icon" }, view_options = { show_hidden = true } })
 
 vim.keymap.set('n', '-', ':Oil --float --preview <CR>', { desc = 'Oil'})
 vim.keymap.set('n', '<leader>ff', ":Pick files<CR>", { desc = 'Finder - find files' })
@@ -146,10 +143,9 @@ vim.diagnostic.config({
 
 require("mason").setup()
 require("mason-lspconfig").setup()
-vim.lsp.config('lua_ls', { settings = { Lua = {
-    workspace = { library = { vim.env.VIMRUNTIME } },
-} } })
+vim.lsp.config('lua_ls', { settings = { Lua = { workspace = { library = { vim.env.VIMRUNTIME } }, } } })
 
+-- <C-space>, <C-n>, <C-p>
 require("blink.cmp").setup({
     keymap = { preset = 'super-tab' },
     signature = { enabled = true },
